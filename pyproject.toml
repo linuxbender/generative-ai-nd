@@ -7,6 +7,10 @@ dependencies = [
     "datasets>=4.4.2",
     "ipykernel>=7.1.0",
     "litellm>=1.80.10",
+    "pandas-stubs~=2.3.3",
     "pip>=25.3",
+    "torch==2.8.0",
+    "torchaudio==2.8.0",
+    "torchvision==0.23.0",
     "unsloth>=2025.11.1",
 ]
