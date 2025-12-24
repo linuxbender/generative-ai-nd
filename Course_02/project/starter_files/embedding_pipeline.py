@@ -311,8 +311,21 @@ class ChromaEmbeddingPipelineTextOnly:
             List of (text, metadata) tuples
         """
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
+            # Try different encodings
+            encodings = ['utf-8', 'latin-1', 'cp1252', 'iso-8859-1']
+            content = None
+            
+            for encoding in encodings:
+                try:
+                    with open(file_path, 'r', encoding=encoding) as f:
+                        content = f.read()
+                    break  # Successfully read file
+                except UnicodeDecodeError:
+                    continue
+            
+            if content is None:
+                logger.error(f"Could not decode file {file_path} with any encoding")
+                return []
             
             if not content.strip():
                 return []

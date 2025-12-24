@@ -1,0 +1,427 @@
+2025-12-24 21:50:11,550 - INFO - Initializing ChromaDB Embedding Pipeline...
+2025-12-24 21:50:11,868 - INFO - Using collection: nasa_space_missions_text
+2025-12-24 21:50:11,868 - INFO - Starting text data processing with update mode: skip
+2025-12-24 21:50:11,868 - INFO - Scanning directory: apollo13
+2025-12-24 21:50:11,868 - INFO - Found 1 text files in apollo13
+2025-12-24 21:50:11,868 - INFO - Total text files to process: 1
+2025-12-24 21:50:11,868 - INFO - Files by mission:
+2025-12-24 21:50:11,868 - INFO -   apollo_13: 1 files
+2025-12-24 21:50:11,868 - INFO - Processing 1 files...
+2025-12-24 21:50:11,868 - INFO - Processing: apollo13/AS13_TEC.txt
+2025-12-24 21:50:11,870 - ERROR - Error processing text file apollo13/AS13_TEC.txt: 'utf-8' codec can't decode byte 0x92 in position 26326: invalid start byte
+2025-12-24 21:50:11,870 - WARNING - No documents extracted from apollo13/AS13_TEC.txt
+2025-12-24 21:50:11,870 - INFO - ============================================================
+2025-12-24 21:50:11,870 - INFO - PROCESSING COMPLETE
+2025-12-24 21:50:11,870 - INFO - ============================================================
+2025-12-24 21:50:11,870 - INFO - Files processed: 0
+2025-12-24 21:50:11,870 - INFO - Total chunks created: 0
+2025-12-24 21:50:11,870 - INFO - Documents added to collection: 0
+2025-12-24 21:50:11,870 - INFO - Documents updated in collection: 0
+2025-12-24 21:50:11,870 - INFO - Documents skipped (already exist): 0
+2025-12-24 21:50:11,871 - INFO - Errors: 0
+2025-12-24 21:50:11,871 - INFO - Processing time: 0.00 seconds
+2025-12-24 21:50:11,871 - INFO - 
+Mission breakdown:
+2025-12-24 21:50:11,873 - INFO - 
+Collection: nasa_space_missions_text
+2025-12-24 21:50:11,874 - INFO - Total documents in collection: 0
+2025-12-24 21:50:11,874 - INFO - Pipeline completed successfully!
+2025-12-24 21:51:13,685 - INFO - Initializing ChromaDB Embedding Pipeline...
+2025-12-24 21:51:13,889 - INFO - Using collection: nasa_space_missions_text
+2025-12-24 21:51:13,889 - INFO - Starting text data processing with update mode: skip
+2025-12-24 21:51:13,889 - INFO - Scanning directory: apollo13
+2025-12-24 21:51:13,889 - INFO - Found 1 text files in apollo13
+2025-12-24 21:51:13,889 - INFO - Total text files to process: 1
+2025-12-24 21:51:13,889 - INFO - Files by mission:
+2025-12-24 21:51:13,889 - INFO -   apollo_13: 1 files
+2025-12-24 21:51:13,889 - INFO - Processing 1 files...
+2025-12-24 21:51:13,890 - INFO - Processing: apollo13/AS13_TEC.txt
+2025-12-24 21:51:14,070 - INFO - Retrying request to /embeddings in 0.436505 seconds
+2025-12-24 21:51:14,508 - INFO - Retrying request to /embeddings in 0.871854 seconds
+2025-12-24 21:51:15,382 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:15,382 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0000: Connection error.
+2025-12-24 21:51:15,384 - INFO - Retrying request to /embeddings in 0.397442 seconds
+2025-12-24 21:51:15,784 - INFO - Retrying request to /embeddings in 0.873518 seconds
+2025-12-24 21:51:16,659 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:16,659 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0001: Connection error.
+2025-12-24 21:51:16,661 - INFO - Retrying request to /embeddings in 0.437609 seconds
+2025-12-24 21:51:17,100 - INFO - Retrying request to /embeddings in 0.924489 seconds
+2025-12-24 21:51:18,026 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:18,026 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0002: Connection error.
+2025-12-24 21:51:18,028 - INFO - Retrying request to /embeddings in 0.478789 seconds
+2025-12-24 21:51:18,509 - INFO - Retrying request to /embeddings in 0.895274 seconds
+2025-12-24 21:51:19,406 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:19,406 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0003: Connection error.
+2025-12-24 21:51:19,408 - INFO - Retrying request to /embeddings in 0.463216 seconds
+2025-12-24 21:51:19,874 - INFO - Retrying request to /embeddings in 0.842381 seconds
+2025-12-24 21:51:20,718 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:20,718 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0004: Connection error.
+2025-12-24 21:51:20,720 - INFO - Retrying request to /embeddings in 0.440154 seconds
+2025-12-24 21:51:21,162 - INFO - Retrying request to /embeddings in 0.852618 seconds
+2025-12-24 21:51:22,016 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:22,016 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0005: Connection error.
+2025-12-24 21:51:22,018 - INFO - Retrying request to /embeddings in 0.427481 seconds
+2025-12-24 21:51:22,447 - INFO - Retrying request to /embeddings in 0.877928 seconds
+2025-12-24 21:51:23,327 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:23,327 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0006: Connection error.
+2025-12-24 21:51:23,329 - INFO - Retrying request to /embeddings in 0.484715 seconds
+2025-12-24 21:51:23,815 - INFO - Retrying request to /embeddings in 0.932970 seconds
+2025-12-24 21:51:24,750 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:24,750 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0007: Connection error.
+2025-12-24 21:51:24,752 - INFO - Retrying request to /embeddings in 0.410163 seconds
+2025-12-24 21:51:25,164 - INFO - Retrying request to /embeddings in 0.992190 seconds
+2025-12-24 21:51:26,157 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:26,158 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0008: Connection error.
+2025-12-24 21:51:26,159 - INFO - Retrying request to /embeddings in 0.428656 seconds
+2025-12-24 21:51:26,590 - INFO - Retrying request to /embeddings in 0.814286 seconds
+2025-12-24 21:51:27,406 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:27,406 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0009: Connection error.
+2025-12-24 21:51:27,408 - INFO - Retrying request to /embeddings in 0.381536 seconds
+2025-12-24 21:51:27,791 - INFO - Retrying request to /embeddings in 0.864898 seconds
+2025-12-24 21:51:28,658 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:28,658 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0010: Connection error.
+2025-12-24 21:51:28,660 - INFO - Retrying request to /embeddings in 0.474052 seconds
+2025-12-24 21:51:29,135 - INFO - Retrying request to /embeddings in 0.999677 seconds
+2025-12-24 21:51:30,137 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:30,137 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0011: Connection error.
+2025-12-24 21:51:30,139 - INFO - Retrying request to /embeddings in 0.383086 seconds
+2025-12-24 21:51:30,524 - INFO - Retrying request to /embeddings in 0.979433 seconds
+2025-12-24 21:51:31,505 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:31,505 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0012: Connection error.
+2025-12-24 21:51:31,507 - INFO - Retrying request to /embeddings in 0.486806 seconds
+2025-12-24 21:51:31,996 - INFO - Retrying request to /embeddings in 0.763714 seconds
+2025-12-24 21:51:32,761 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:32,761 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0013: Connection error.
+2025-12-24 21:51:32,763 - INFO - Retrying request to /embeddings in 0.414560 seconds
+2025-12-24 21:51:33,179 - INFO - Retrying request to /embeddings in 0.759279 seconds
+2025-12-24 21:51:33,940 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:33,940 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0014: Connection error.
+2025-12-24 21:51:33,942 - INFO - Retrying request to /embeddings in 0.386478 seconds
+2025-12-24 21:51:34,330 - INFO - Retrying request to /embeddings in 0.895134 seconds
+2025-12-24 21:51:35,227 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:35,227 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0015: Connection error.
+2025-12-24 21:51:35,229 - INFO - Retrying request to /embeddings in 0.408221 seconds
+2025-12-24 21:51:35,639 - INFO - Retrying request to /embeddings in 0.902909 seconds
+2025-12-24 21:51:36,544 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:36,544 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0016: Connection error.
+2025-12-24 21:51:36,546 - INFO - Retrying request to /embeddings in 0.384123 seconds
+2025-12-24 21:51:36,932 - INFO - Retrying request to /embeddings in 0.791502 seconds
+2025-12-24 21:51:37,726 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:37,726 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0017: Connection error.
+2025-12-24 21:51:37,728 - INFO - Retrying request to /embeddings in 0.385431 seconds
+2025-12-24 21:51:38,115 - INFO - Retrying request to /embeddings in 0.906746 seconds
+2025-12-24 21:51:39,023 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:39,023 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0018: Connection error.
+2025-12-24 21:51:39,025 - INFO - Retrying request to /embeddings in 0.419589 seconds
+2025-12-24 21:51:39,446 - INFO - Retrying request to /embeddings in 0.917788 seconds
+2025-12-24 21:51:40,366 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:40,366 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0019: Connection error.
+2025-12-24 21:51:40,368 - INFO - Retrying request to /embeddings in 0.403917 seconds
+2025-12-24 21:51:40,773 - INFO - Retrying request to /embeddings in 0.982592 seconds
+2025-12-24 21:51:41,757 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:41,757 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0020: Connection error.
+2025-12-24 21:51:41,759 - INFO - Retrying request to /embeddings in 0.394434 seconds
+2025-12-24 21:51:42,155 - INFO - Retrying request to /embeddings in 0.925645 seconds
+2025-12-24 21:51:43,082 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:43,083 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0021: Connection error.
+2025-12-24 21:51:43,085 - INFO - Retrying request to /embeddings in 0.450669 seconds
+2025-12-24 21:51:43,537 - INFO - Retrying request to /embeddings in 0.859066 seconds
+2025-12-24 21:51:44,398 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:44,398 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0022: Connection error.
+2025-12-24 21:51:44,400 - INFO - Retrying request to /embeddings in 0.434982 seconds
+2025-12-24 21:51:44,836 - INFO - Retrying request to /embeddings in 0.874264 seconds
+2025-12-24 21:51:45,712 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:45,712 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0023: Connection error.
+2025-12-24 21:51:45,714 - INFO - Retrying request to /embeddings in 0.466116 seconds
+2025-12-24 21:51:46,182 - INFO - Retrying request to /embeddings in 0.895041 seconds
+2025-12-24 21:51:47,078 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:47,078 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0024: Connection error.
+2025-12-24 21:51:47,080 - INFO - Retrying request to /embeddings in 0.450352 seconds
+2025-12-24 21:51:47,532 - INFO - Retrying request to /embeddings in 0.805155 seconds
+2025-12-24 21:51:48,339 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:48,339 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0025: Connection error.
+2025-12-24 21:51:48,341 - INFO - Retrying request to /embeddings in 0.494603 seconds
+2025-12-24 21:51:48,837 - INFO - Retrying request to /embeddings in 0.873494 seconds
+2025-12-24 21:51:49,712 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:49,712 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0026: Connection error.
+2025-12-24 21:51:49,714 - INFO - Retrying request to /embeddings in 0.382916 seconds
+2025-12-24 21:51:50,098 - INFO - Retrying request to /embeddings in 0.940835 seconds
+2025-12-24 21:51:51,041 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:51,041 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0027: Connection error.
+2025-12-24 21:51:51,043 - INFO - Retrying request to /embeddings in 0.466585 seconds
+2025-12-24 21:51:51,511 - INFO - Retrying request to /embeddings in 0.978885 seconds
+2025-12-24 21:51:52,491 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:52,492 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0028: Connection error.
+2025-12-24 21:51:52,493 - INFO - Retrying request to /embeddings in 0.473471 seconds
+2025-12-24 21:51:52,968 - INFO - Retrying request to /embeddings in 0.778176 seconds
+2025-12-24 21:51:53,748 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:53,748 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0029: Connection error.
+2025-12-24 21:51:53,750 - INFO - Retrying request to /embeddings in 0.467415 seconds
+2025-12-24 21:51:54,219 - INFO - Retrying request to /embeddings in 0.995667 seconds
+2025-12-24 21:51:55,216 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:55,216 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0030: Connection error.
+2025-12-24 21:51:55,218 - INFO - Retrying request to /embeddings in 0.415163 seconds
+2025-12-24 21:51:55,634 - INFO - Retrying request to /embeddings in 0.793419 seconds
+2025-12-24 21:51:56,429 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:56,429 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0031: Connection error.
+2025-12-24 21:51:56,431 - INFO - Retrying request to /embeddings in 0.397856 seconds
+2025-12-24 21:51:56,830 - INFO - Retrying request to /embeddings in 0.848284 seconds
+2025-12-24 21:51:57,680 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:57,680 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0032: Connection error.
+2025-12-24 21:51:57,682 - INFO - Retrying request to /embeddings in 0.471006 seconds
+2025-12-24 21:51:58,155 - INFO - Retrying request to /embeddings in 0.990256 seconds
+2025-12-24 21:51:59,147 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:51:59,147 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0033: Connection error.
+2025-12-24 21:51:59,149 - INFO - Retrying request to /embeddings in 0.397827 seconds
+2025-12-24 21:51:59,548 - INFO - Retrying request to /embeddings in 0.761933 seconds
+2025-12-24 21:52:00,311 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:00,312 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0034: Connection error.
+2025-12-24 21:52:00,314 - INFO - Retrying request to /embeddings in 0.473127 seconds
+2025-12-24 21:52:00,788 - INFO - Retrying request to /embeddings in 0.857544 seconds
+2025-12-24 21:52:01,648 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:01,648 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0035: Connection error.
+2025-12-24 21:52:01,650 - INFO - Retrying request to /embeddings in 0.406919 seconds
+2025-12-24 21:52:02,058 - INFO - Retrying request to /embeddings in 0.929504 seconds
+2025-12-24 21:52:02,989 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:02,989 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0036: Connection error.
+2025-12-24 21:52:02,991 - INFO - Retrying request to /embeddings in 0.411901 seconds
+2025-12-24 21:52:03,404 - INFO - Retrying request to /embeddings in 0.934948 seconds
+2025-12-24 21:52:04,341 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:04,341 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0037: Connection error.
+2025-12-24 21:52:04,343 - INFO - Retrying request to /embeddings in 0.384875 seconds
+2025-12-24 21:52:04,729 - INFO - Retrying request to /embeddings in 0.929936 seconds
+2025-12-24 21:52:05,660 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:05,661 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0038: Connection error.
+2025-12-24 21:52:05,662 - INFO - Retrying request to /embeddings in 0.422732 seconds
+2025-12-24 21:52:06,087 - INFO - Retrying request to /embeddings in 0.879698 seconds
+2025-12-24 21:52:06,968 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:06,968 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0039: Connection error.
+2025-12-24 21:52:06,970 - INFO - Retrying request to /embeddings in 0.454582 seconds
+2025-12-24 21:52:07,426 - INFO - Retrying request to /embeddings in 0.780958 seconds
+2025-12-24 21:52:08,208 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:08,208 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0040: Connection error.
+2025-12-24 21:52:08,210 - INFO - Retrying request to /embeddings in 0.380363 seconds
+2025-12-24 21:52:08,592 - INFO - Retrying request to /embeddings in 0.774313 seconds
+2025-12-24 21:52:09,368 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:09,368 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0041: Connection error.
+2025-12-24 21:52:09,370 - INFO - Retrying request to /embeddings in 0.457139 seconds
+2025-12-24 21:52:09,829 - INFO - Retrying request to /embeddings in 0.834266 seconds
+2025-12-24 21:52:10,665 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:10,665 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0042: Connection error.
+2025-12-24 21:52:10,666 - INFO - Retrying request to /embeddings in 0.488730 seconds
+2025-12-24 21:52:11,157 - INFO - Retrying request to /embeddings in 0.984246 seconds
+2025-12-24 21:52:12,143 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:12,143 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0043: Connection error.
+2025-12-24 21:52:12,145 - INFO - Retrying request to /embeddings in 0.499289 seconds
+2025-12-24 21:52:12,646 - INFO - Retrying request to /embeddings in 0.795149 seconds
+2025-12-24 21:52:13,442 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:13,442 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0044: Connection error.
+2025-12-24 21:52:13,444 - INFO - Retrying request to /embeddings in 0.442245 seconds
+2025-12-24 21:52:13,888 - INFO - Retrying request to /embeddings in 0.833928 seconds
+2025-12-24 21:52:14,723 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:14,724 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0045: Connection error.
+2025-12-24 21:52:14,725 - INFO - Retrying request to /embeddings in 0.489797 seconds
+2025-12-24 21:52:15,217 - INFO - Retrying request to /embeddings in 0.872607 seconds
+2025-12-24 21:52:16,091 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:16,091 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0046: Connection error.
+2025-12-24 21:52:16,097 - INFO - Retrying request to /embeddings in 0.454670 seconds
+2025-12-24 21:52:16,553 - INFO - Retrying request to /embeddings in 0.817692 seconds
+2025-12-24 21:52:17,372 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:17,372 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0047: Connection error.
+2025-12-24 21:52:17,374 - INFO - Retrying request to /embeddings in 0.378897 seconds
+2025-12-24 21:52:17,755 - INFO - Retrying request to /embeddings in 0.858186 seconds
+2025-12-24 21:52:18,614 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:18,614 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0048: Connection error.
+2025-12-24 21:52:18,616 - INFO - Retrying request to /embeddings in 0.442031 seconds
+2025-12-24 21:52:19,060 - INFO - Retrying request to /embeddings in 0.878660 seconds
+2025-12-24 21:52:19,940 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:19,940 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0049: Connection error.
+2025-12-24 21:52:19,942 - INFO - Retrying request to /embeddings in 0.394634 seconds
+2025-12-24 21:52:20,338 - INFO - Retrying request to /embeddings in 0.875328 seconds
+2025-12-24 21:52:21,215 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:21,215 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0050: Connection error.
+2025-12-24 21:52:21,217 - INFO - Retrying request to /embeddings in 0.398825 seconds
+2025-12-24 21:52:21,618 - INFO - Retrying request to /embeddings in 0.812404 seconds
+2025-12-24 21:52:22,431 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:22,432 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0051: Connection error.
+2025-12-24 21:52:22,433 - INFO - Retrying request to /embeddings in 0.460588 seconds
+2025-12-24 21:52:22,895 - INFO - Retrying request to /embeddings in 0.979952 seconds
+2025-12-24 21:52:23,877 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:23,877 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0052: Connection error.
+2025-12-24 21:52:23,879 - INFO - Retrying request to /embeddings in 0.441047 seconds
+2025-12-24 21:52:24,321 - INFO - Retrying request to /embeddings in 0.884546 seconds
+2025-12-24 21:52:25,207 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:25,207 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0053: Connection error.
+2025-12-24 21:52:25,209 - INFO - Retrying request to /embeddings in 0.450036 seconds
+2025-12-24 21:52:25,661 - INFO - Retrying request to /embeddings in 0.845205 seconds
+2025-12-24 21:52:26,507 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:26,507 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0054: Connection error.
+2025-12-24 21:52:26,509 - INFO - Retrying request to /embeddings in 0.466405 seconds
+2025-12-24 21:52:26,977 - INFO - Retrying request to /embeddings in 0.971189 seconds
+2025-12-24 21:52:27,950 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:27,950 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0055: Connection error.
+2025-12-24 21:52:27,952 - INFO - Retrying request to /embeddings in 0.392964 seconds
+2025-12-24 21:52:28,346 - INFO - Retrying request to /embeddings in 0.866936 seconds
+2025-12-24 21:52:29,215 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:29,215 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0056: Connection error.
+2025-12-24 21:52:29,217 - INFO - Retrying request to /embeddings in 0.447607 seconds
+2025-12-24 21:52:29,666 - INFO - Retrying request to /embeddings in 0.773658 seconds
+2025-12-24 21:52:30,441 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:30,442 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0057: Connection error.
+2025-12-24 21:52:30,443 - INFO - Retrying request to /embeddings in 0.384803 seconds
+2025-12-24 21:52:30,829 - INFO - Retrying request to /embeddings in 0.995116 seconds
+2025-12-24 21:52:31,826 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:31,826 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0058: Connection error.
+2025-12-24 21:52:31,828 - INFO - Retrying request to /embeddings in 0.421673 seconds
+2025-12-24 21:52:32,251 - INFO - Retrying request to /embeddings in 0.884613 seconds
+2025-12-24 21:52:33,137 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:33,137 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0059: Connection error.
+2025-12-24 21:52:33,139 - INFO - Retrying request to /embeddings in 0.445901 seconds
+2025-12-24 21:52:33,587 - INFO - Retrying request to /embeddings in 0.800026 seconds
+2025-12-24 21:52:34,388 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:34,389 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0060: Connection error.
+2025-12-24 21:52:34,390 - INFO - Retrying request to /embeddings in 0.460897 seconds
+2025-12-24 21:52:34,853 - INFO - Retrying request to /embeddings in 0.761270 seconds
+2025-12-24 21:52:35,615 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:35,615 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0061: Connection error.
+2025-12-24 21:52:35,617 - INFO - Retrying request to /embeddings in 0.422140 seconds
+2025-12-24 21:52:36,041 - INFO - Retrying request to /embeddings in 0.793389 seconds
+2025-12-24 21:52:36,835 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:36,836 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0062: Connection error.
+2025-12-24 21:52:36,838 - INFO - Retrying request to /embeddings in 0.494050 seconds
+2025-12-24 21:52:37,333 - INFO - Retrying request to /embeddings in 0.843825 seconds
+2025-12-24 21:52:38,178 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:38,179 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0063: Connection error.
+2025-12-24 21:52:38,180 - INFO - Retrying request to /embeddings in 0.384380 seconds
+2025-12-24 21:52:38,566 - INFO - Retrying request to /embeddings in 0.836606 seconds
+2025-12-24 21:52:39,405 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:39,405 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0064: Connection error.
+2025-12-24 21:52:39,406 - INFO - Retrying request to /embeddings in 0.420252 seconds
+2025-12-24 21:52:39,828 - INFO - Retrying request to /embeddings in 0.904907 seconds
+2025-12-24 21:52:40,735 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:40,735 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0065: Connection error.
+2025-12-24 21:52:40,737 - INFO - Retrying request to /embeddings in 0.471138 seconds
+2025-12-24 21:52:41,210 - INFO - Retrying request to /embeddings in 0.775919 seconds
+2025-12-24 21:52:41,987 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:41,987 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0066: Connection error.
+2025-12-24 21:52:41,989 - INFO - Retrying request to /embeddings in 0.408087 seconds
+2025-12-24 21:52:42,398 - INFO - Retrying request to /embeddings in 0.863567 seconds
+2025-12-24 21:52:43,264 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:43,264 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0067: Connection error.
+2025-12-24 21:52:43,265 - INFO - Retrying request to /embeddings in 0.451971 seconds
+2025-12-24 21:52:43,719 - INFO - Retrying request to /embeddings in 0.781956 seconds
+2025-12-24 21:52:44,502 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:44,502 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0068: Connection error.
+2025-12-24 21:52:44,504 - INFO - Retrying request to /embeddings in 0.406952 seconds
+2025-12-24 21:52:44,913 - INFO - Retrying request to /embeddings in 0.761287 seconds
+2025-12-24 21:52:45,676 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:45,676 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0069: Connection error.
+2025-12-24 21:52:45,678 - INFO - Retrying request to /embeddings in 0.418964 seconds
+2025-12-24 21:52:46,098 - INFO - Retrying request to /embeddings in 0.818726 seconds
+2025-12-24 21:52:46,918 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:46,918 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0070: Connection error.
+2025-12-24 21:52:46,920 - INFO - Retrying request to /embeddings in 0.485214 seconds
+2025-12-24 21:52:47,407 - INFO - Retrying request to /embeddings in 0.869303 seconds
+2025-12-24 21:52:48,278 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:48,278 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0071: Connection error.
+2025-12-24 21:52:48,280 - INFO - Retrying request to /embeddings in 0.384636 seconds
+2025-12-24 21:52:48,666 - INFO - Retrying request to /embeddings in 0.767337 seconds
+2025-12-24 21:52:49,435 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:49,435 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0072: Connection error.
+2025-12-24 21:52:49,437 - INFO - Retrying request to /embeddings in 0.460362 seconds
+2025-12-24 21:52:49,899 - INFO - Retrying request to /embeddings in 0.840121 seconds
+2025-12-24 21:52:50,740 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:50,741 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0073: Connection error.
+2025-12-24 21:52:50,742 - INFO - Retrying request to /embeddings in 0.479150 seconds
+2025-12-24 21:52:51,223 - INFO - Retrying request to /embeddings in 0.981282 seconds
+2025-12-24 21:52:52,206 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:52,206 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0074: Connection error.
+2025-12-24 21:52:52,208 - INFO - Retrying request to /embeddings in 0.381806 seconds
+2025-12-24 21:52:52,591 - INFO - Retrying request to /embeddings in 0.755075 seconds
+2025-12-24 21:52:53,348 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:53,348 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0075: Connection error.
+2025-12-24 21:52:53,350 - INFO - Retrying request to /embeddings in 0.396273 seconds
+2025-12-24 21:52:53,747 - INFO - Retrying request to /embeddings in 0.879054 seconds
+2025-12-24 21:52:54,628 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:54,628 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0076: Connection error.
+2025-12-24 21:52:54,630 - INFO - Retrying request to /embeddings in 0.458576 seconds
+2025-12-24 21:52:55,090 - INFO - Retrying request to /embeddings in 0.979540 seconds
+2025-12-24 21:52:56,071 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:56,071 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0077: Connection error.
+2025-12-24 21:52:56,073 - INFO - Retrying request to /embeddings in 0.382916 seconds
+2025-12-24 21:52:56,457 - INFO - Retrying request to /embeddings in 0.857498 seconds
+2025-12-24 21:52:57,317 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:57,317 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0078: Connection error.
+2025-12-24 21:52:57,318 - INFO - Retrying request to /embeddings in 0.473042 seconds
+2025-12-24 21:52:57,793 - INFO - Retrying request to /embeddings in 0.750660 seconds
+2025-12-24 21:52:58,545 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:58,545 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0079: Connection error.
+2025-12-24 21:52:58,547 - INFO - Retrying request to /embeddings in 0.403202 seconds
+2025-12-24 21:52:58,952 - INFO - Retrying request to /embeddings in 0.796987 seconds
+2025-12-24 21:52:59,750 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:52:59,751 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0080: Connection error.
+2025-12-24 21:52:59,752 - INFO - Retrying request to /embeddings in 0.481034 seconds
+2025-12-24 21:53:00,235 - INFO - Retrying request to /embeddings in 0.776251 seconds
+2025-12-24 21:53:01,013 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:01,013 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0081: Connection error.
+2025-12-24 21:53:01,015 - INFO - Retrying request to /embeddings in 0.473550 seconds
+2025-12-24 21:53:01,490 - INFO - Retrying request to /embeddings in 0.831902 seconds
+2025-12-24 21:53:02,323 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:02,324 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0082: Connection error.
+2025-12-24 21:53:02,325 - INFO - Retrying request to /embeddings in 0.450496 seconds
+2025-12-24 21:53:02,777 - INFO - Retrying request to /embeddings in 0.759757 seconds
+2025-12-24 21:53:03,538 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:03,539 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0083: Connection error.
+2025-12-24 21:53:03,541 - INFO - Retrying request to /embeddings in 0.448154 seconds
+2025-12-24 21:53:03,991 - INFO - Retrying request to /embeddings in 0.848097 seconds
+2025-12-24 21:53:04,841 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:04,841 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0084: Connection error.
+2025-12-24 21:53:04,843 - INFO - Retrying request to /embeddings in 0.439031 seconds
+2025-12-24 21:53:05,283 - INFO - Retrying request to /embeddings in 0.880654 seconds
+2025-12-24 21:53:06,166 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:06,166 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0085: Connection error.
+2025-12-24 21:53:06,168 - INFO - Retrying request to /embeddings in 0.429169 seconds
+2025-12-24 21:53:06,598 - INFO - Retrying request to /embeddings in 0.821143 seconds
+2025-12-24 21:53:07,421 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:07,421 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0086: Connection error.
+2025-12-24 21:53:07,423 - INFO - Retrying request to /embeddings in 0.385515 seconds
+2025-12-24 21:53:07,810 - INFO - Retrying request to /embeddings in 0.884879 seconds
+2025-12-24 21:53:08,697 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:08,697 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0087: Connection error.
+2025-12-24 21:53:08,699 - INFO - Retrying request to /embeddings in 0.411882 seconds
+2025-12-24 21:53:09,112 - INFO - Retrying request to /embeddings in 0.752489 seconds
+2025-12-24 21:53:09,866 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:09,866 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0088: Connection error.
+2025-12-24 21:53:09,868 - INFO - Retrying request to /embeddings in 0.392470 seconds
+2025-12-24 21:53:10,262 - INFO - Retrying request to /embeddings in 0.797276 seconds
+2025-12-24 21:53:11,061 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:11,061 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0089: Connection error.
+2025-12-24 21:53:11,063 - INFO - Retrying request to /embeddings in 0.472098 seconds
+2025-12-24 21:53:11,536 - INFO - Retrying request to /embeddings in 0.849765 seconds
+2025-12-24 21:53:12,387 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:12,388 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0090: Connection error.
+2025-12-24 21:53:12,390 - INFO - Retrying request to /embeddings in 0.406231 seconds
+2025-12-24 21:53:12,798 - INFO - Retrying request to /embeddings in 0.995715 seconds
+2025-12-24 21:53:13,795 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:13,795 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0091: Connection error.
+2025-12-24 21:53:13,798 - INFO - Retrying request to /embeddings in 0.452541 seconds
+2025-12-24 21:53:14,252 - INFO - Retrying request to /embeddings in 0.803665 seconds
+2025-12-24 21:53:15,057 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:15,057 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0092: Connection error.
+2025-12-24 21:53:15,059 - INFO - Retrying request to /embeddings in 0.441924 seconds
+2025-12-24 21:53:15,502 - INFO - Retrying request to /embeddings in 0.988399 seconds
+2025-12-24 21:53:16,492 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:16,492 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0093: Connection error.
+2025-12-24 21:53:16,494 - INFO - Retrying request to /embeddings in 0.430240 seconds
+2025-12-24 21:53:16,926 - INFO - Retrying request to /embeddings in 0.807137 seconds
+2025-12-24 21:53:17,735 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:17,735 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0094: Connection error.
+2025-12-24 21:53:17,737 - INFO - Retrying request to /embeddings in 0.417343 seconds
+2025-12-24 21:53:18,155 - INFO - Retrying request to /embeddings in 0.872759 seconds
+2025-12-24 21:53:19,030 - ERROR - Error getting embedding: Connection error.
+2025-12-24 21:53:19,030 - ERROR - Error processing document apollo_13_AS13_TEC_chunk_0095: Connection error.
+2025-12-24 21:53:19,031 - INFO - Retrying request to /embeddings in 0.477088 seconds
+2025-12-24 21:53:38,374 - INFO - Initializing ChromaDB Embedding Pipeline...
+2025-12-24 21:53:38,568 - INFO - Using collection: nasa_space_missions_text
+2025-12-24 21:53:38,568 - INFO - Collection Statistics:
+2025-12-24 21:53:38,570 - INFO - error: No documents in collection
