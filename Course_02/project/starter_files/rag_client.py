@@ -128,13 +128,14 @@ def retrieve_documents(collection, query: str, n_results: int = 3,
     # Return query results to caller
     return results
 
-def format_context(documents: List[str], metadatas: List[Dict]) -> str:
+def format_context(documents: List[str], metadatas: List[Dict], max_doc_length: int = 1000) -> str:
     """
     Format retrieved documents into context
     
     Args:
         documents: List of document text strings
         metadatas: List of metadata dictionaries for each document
+        max_doc_length: Maximum length for each document (default: 1000)
     
     Returns:
         Formatted context string ready for LLM consumption
@@ -166,7 +167,6 @@ def format_context(documents: List[str], metadatas: List[Dict]) -> str:
         context_parts.append(source_header)
         
         # Check document length and truncate if necessary
-        max_doc_length = 1000
         if len(doc) > max_doc_length:
             doc_content = doc[:max_doc_length] + "..."
         else:

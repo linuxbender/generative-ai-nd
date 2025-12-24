@@ -24,6 +24,11 @@ def evaluate_response_quality(question: str, answer: str, contexts: List[str]) -
     
     Returns:
         Dictionary of metric scores
+    
+    Note:
+        For NonLLMContextPrecisionWithReference, we use the answer as reference
+        since we don't have ground truth. In production, you should collect
+        ground truth answers for more accurate evaluation.
     """
     if not RAGAS_AVAILABLE:
         return {"error": "RAGAS not available"}
