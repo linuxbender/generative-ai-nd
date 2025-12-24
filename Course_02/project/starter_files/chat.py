@@ -181,11 +181,17 @@ def main():
     
     # Initialize RAG system
     with st.spinner("Initializing RAG system..."):
-
-        collection, success, error = initialize_rag_system(
-            selected_backend["directory"], 
-            selected_backend["collection_name"]
-        )
+        try:
+            collection = initialize_rag_system(
+                selected_backend["directory"], 
+                selected_backend["collection_name"]
+            )
+            success = True
+            error = None
+        except Exception as e:
+            collection = None
+            success = False
+            error = str(e)
     
     if not success:
         st.error(f"Failed to initialize RAG system: {error}")
