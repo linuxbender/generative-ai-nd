@@ -186,7 +186,14 @@ def run_single_evaluation(
     
     except Exception as e:
         result['error'] = str(e)
-        logger.error(f"Error in evaluation pipeline: {e}")
+        error_msg = str(e)
+        
+        # Check if this is an embedding dimension mismatch - expected if collection uses different model
+        if "expecting embedding with dimension" in error_msg:
+            logger.warning(f"Embedding dimension mismatch (expected with different embedding models): {e}")
+            logger.info("Note: This error can be ignored if you intentionally created the collection with a different embedding model")
+        else:
+            logger.error(f"Error in evaluation pipeline: {e}")
     
     return result
 
@@ -259,6 +266,13 @@ def print_results(results: List[Dict], stats: Dict, verbose: bool = False):
     print(f"Successful: {stats['successful']} ({stats['successful']/stats['total_questions']*100:.1f}%)")
     print(f"Failed: {stats['failed']} ({stats['failed']/stats['total_questions']*100:.1f}%)")
     
+    # Check for embedding dimension mismatch errors
+    dimension_mismatch_count = sum(1 for r in results if r.get('error') and "expecting embedding with dimension" in r.get('error', ''))
+    if dimension_mismatch_count > 0:
+        print(f"\n⚠️  Note: {dimension_mismatch_count} question(s) skipped due to embedding dimension mismatch")
+        print(f"   This occurs when the collection was created with a different embedding model.")
+        print(f"   To resolve: Delete chroma_db_openai/ and recreate with current embedding model.")
+    
     print(f"\n📈 RAGAS METRICS SUMMARY")
     print(f"{'─'*80}")
     
@@ -287,7 +301,13 @@ def print_results(results: List[Dict], stats: Dict, verbose: bool = False):
             print(f"\n[Question {i}] {result['question']}")
             
             if result.get('error'):
-                print(f"  ❌ Error: {result['error']}")
+                error_msg = result['error']
+                # Check if this is an embedding dimension mismatch
+                if "expecting embedding with dimension" in error_msg:
+                    print(f"  ⚠️  Skipped (embedding dimension mismatch - collection uses different model)")
+                    print(f"      Details: {error_msg}")
+                else:
+                    print(f"  ❌ Error: {error_msg}")
             else:
                 print(f"  ✓ Retrieved: {result['retrieved_docs']} documents")
                 print(f"  ✓ Answer: {result['answer'][:100]}...")
