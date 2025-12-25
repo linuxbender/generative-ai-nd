@@ -1,9 +1,7 @@
 import chromadb
 from chromadb.config import Settings
-from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 from typing import Dict, List, Optional
 from pathlib import Path
-import os
 
 def discover_chroma_backends() -> Dict[str, Dict[str, str]]:
     """
@@ -74,19 +72,13 @@ def discover_chroma_backends() -> Dict[str, Dict[str, str]]:
     # Return complete backends dictionary with all discovered collections
     return backends
 
-def initialize_rag_system(chroma_dir: str, collection_name: str, 
-                         openai_api_key: Optional[str] = None,
-                         embedding_model: str = "text-embedding-3-small",
-                         openai_base_url: Optional[str] = None):
+def initialize_rag_system(chroma_dir: str, collection_name: str):
     """
     Initialize the RAG system with specified backend (cached for performance)
     
     Args:
         chroma_dir: Directory path for ChromaDB
         collection_name: Name of the collection to use
-        openai_api_key: OpenAI API key (falls back to env var)
-        embedding_model: Embedding model to use for queries (default: text-embedding-3-small)
-        openai_base_url: Optional custom base URL for OpenAI API
     
     Returns:
         ChromaDB collection object
@@ -97,32 +89,8 @@ def initialize_rag_system(chroma_dir: str, collection_name: str,
         settings=Settings(anonymized_telemetry=False)
     )
     
-    # Set up embedding function with the same configuration used during collection creation
-    # This ensures queries use the same embedding model and API endpoint
-    api_key = openai_api_key or os.getenv('OPENAI_API_KEY')
-    base_url = openai_base_url or os.getenv('OPENAI_BASE_URL')
-    
-    if api_key:
-        # Create embedding function with proper configuration
-        embedding_kwargs = {
-            "api_key": api_key,
-            "model_name": embedding_model
-        }
-        if base_url:
-            embedding_kwargs["api_base"] = base_url
-        
-        embedding_function = OpenAIEmbeddingFunction(**embedding_kwargs)
-        
-        # Get collection with the embedding function
-        collection = client.get_collection(
-            name=collection_name,
-            embedding_function=embedding_function
-        )
-    else:
-        # Fallback: get collection without explicit embedding function
-        # Will use whatever is stored in collection metadata
-        collection = client.get_collection(name=collection_name)
-    
+    # Return the collection with the collection_name
+    collection = client.get_collection(name=collection_name)
     return collection
 
 def retrieve_documents(collection, query: str, n_results: int = 3, 
