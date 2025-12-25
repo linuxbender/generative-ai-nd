@@ -57,18 +57,19 @@ def retrieve_documents(collection, query: str, n_results: int = 3,
         # Check if it's an embedding dimension mismatch (info) or actual error
         if "expecting embedding with dimension" in str(e):
             # This is informational - about model mismatch
-            st.session_state.info_log.append({
-                "timestamp": pd.Timestamp.now(),
-                "message": error_msg,
-                "type": "Embedding Dimension Mismatch"
-            })
+            severity = "info"
+            error_type = "Embedding Dimension Mismatch"
         else:
             # This is an actual error
-            st.session_state.error_log.append({
-                "timestamp": pd.Timestamp.now(),
-                "message": error_msg,
-                "type": "Retrieval Error"
-            })
+            severity = "error"
+            error_type = "Retrieval Error"
+        
+        st.session_state.system_messages.append({
+            "timestamp": pd.Timestamp.now(),
+            "message": error_msg,
+            "type": error_type,
+            "severity": severity
+        })
         st.error(error_msg)
         return None
 
