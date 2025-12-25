@@ -1,0 +1,225 @@
+# NASA RAG System - Evaluation Dataset
+
+This file contains sample questions used for testing the NASA RAG system, along with expected response characteristics and key information that should be included in accurate answers.
+
+---
+
+## Question 1: Apollo 11 Mission Overview
+
+**Question:**
+What was Apollo 11 and when did it take place?
+
+**Expected Response Should Include:**
+- Apollo 11 was the first crewed mission to land on the Moon
+- Launch date: July 16, 1969
+- Moon landing: July 20, 1969
+- Crew members: Neil Armstrong (Commander), Buzz Aldrin (Lunar Module Pilot), Michael Collins (Command Module Pilot)
+- Neil Armstrong and Buzz Aldrin walked on the Moon while Collins orbited
+- Successful return to Earth on July 24, 1969
+
+**Response Type:**
+Factual historical summary with specific dates and crew names
+
+---
+
+## Question 2: Apollo 13 Crisis
+
+**Question:**
+What went wrong during the Apollo 13 mission?
+
+**Expected Response Should Include:**
+- Oxygen tank explosion occurred on April 13, 1970
+- Famous quote: "Houston, we've had a problem"
+- Crew: Jim Lovell, Jack Swigert, Fred Haise
+- Service module oxygen tank No. 2 exploded
+- Mission changed from Moon landing to safe crew return
+- Crew used Lunar Module as "lifeboat"
+- Successful splashdown on April 17, 1970
+- Described as "successful failure"
+
+**Response Type:**
+Detailed incident description with problem-solving narrative
+
+---
+
+## Question 3: Challenger Disaster
+
+**Question:**
+What caused the Space Shuttle Challenger disaster?
+
+**Expected Response Should Include:**
+- Occurred on January 28, 1986
+- 73 seconds after liftoff
+- O-ring seal failure in right solid rocket booster
+- Cold weather conditions contributed to failure
+- Loss of all seven crew members
+- Mission: STS-51-L
+- Led to major safety reforms in NASA
+
+**Response Type:**
+Technical failure analysis with cause and consequences
+
+---
+
+## Question 4: Apollo 11 Moon Landing Details
+
+**Question:**
+Who were the first humans to walk on the Moon and what did they do there?
+
+**Expected Response Should Include:**
+- Neil Armstrong was first to step onto lunar surface
+- Famous quote: "That's one small step for man, one giant leap for mankind"
+- Buzz Aldrin joined him shortly after
+- Duration: About 2.5 hours outside the Lunar Module
+- Collected lunar samples and soil
+- Deployed experiments (seismometer, laser reflector)
+- Planted American flag
+- Left commemorative plaque
+
+**Response Type:**
+Detailed activity log with quotes and specific accomplishments
+
+---
+
+## Question 5: Apollo 13 Technical Details
+
+**Question:**
+How did the Apollo 13 crew survive after the oxygen tank explosion?
+
+**Expected Response Should Include:**
+- Moved from Command Module to Lunar Module
+- Powered down Command Module to conserve power
+- Used Lunar Module systems for life support
+- Performed critical course corrections
+- Built CO2 scrubber adapter with available materials
+- Endured cold temperatures (about 38°F)
+- Successfully re-entered in Command Module
+- Ground control and crew worked together on solutions
+
+**Response Type:**
+Technical problem-solving narrative with specific procedures
+
+---
+
+## Question 6: Mission Comparison
+
+**Question:**
+What are the key differences between Apollo 11 and Apollo 13 missions?
+
+**Expected Response Should Include:**
+- Apollo 11: First successful Moon landing (July 1969)
+- Apollo 13: Aborted Moon landing due to explosion (April 1970)
+- Apollo 11: All objectives achieved
+- Apollo 13: Changed to crew rescue mission
+- Both had three-person crews
+- Apollo 11: Historical success
+- Apollo 13: Demonstrated problem-solving and resilience
+- Different outcomes but both significant achievements
+
+**Response Type:**
+Comparative analysis highlighting contrasts and similarities
+
+---
+
+## Question 7: Space Shuttle Program Context
+
+**Question:**
+What was the Space Shuttle program and what role did Challenger play?
+
+**Expected Response Should Include:**
+- Space Shuttle: Reusable spacecraft program (1981-2011)
+- Challenger: Second operational orbiter (OV-099)
+- First flight: April 4, 1983
+- Completed 9 successful missions before disaster
+- STS-51-L was 10th mission (January 1986)
+- Disaster led to 32-month hiatus in shuttle flights
+- Program continued until 2011 with improved safety
+
+**Response Type:**
+Historical context with program overview
+
+---
+
+## Question 8: Technical Specifications
+
+**Question:**
+What was the Lunar Module and what was its purpose?
+
+**Expected Response Should Include:**
+- Two-stage spacecraft designed for Moon landing
+- Descent stage: Used for landing on Moon
+- Ascent stage: Used for return to Command Module
+- Could support two astronauts
+- Separate from Command/Service Module
+- Apollo 11's LM was named "Eagle"
+- Apollo 13's LM "Aquarius" served as lifeboat
+- Not designed for re-entry to Earth
+
+**Response Type:**
+Technical description with functional details
+
+---
+
+## Question 9: Crew Communication
+
+**Question:**
+What are some famous quotes or communications from these missions?
+
+**Expected Response Should Include:**
+- Apollo 11 - Armstrong: "That's one small step for man..."
+- Apollo 11 - Aldrin: Described Moon as "magnificent desolation"
+- Apollo 13 - Swigert: "Houston, we've had a problem"
+- Apollo 13 - Lovell: "Houston, we've had a problem here"
+- Mission Control: "Failure is not an option" (attributed to Flight Director Gene Kranz)
+- These quotes became iconic in space exploration history
+
+**Response Type:**
+Collection of memorable quotes with context
+
+---
+
+## Question 10: Safety and Lessons Learned
+
+**Question:**
+What safety improvements resulted from the Challenger disaster?
+
+**Expected Response Should Include:**
+- Redesigned solid rocket boosters
+- Improved O-ring design and testing
+- Enhanced safety protocols
+- Better communication between engineers and management
+- Weather-related launch constraints
+- Crew escape systems improvements
+- More rigorous pre-launch procedures
+- Changed organizational culture regarding safety concerns
+
+**Response Type:**
+Analysis of safety reforms and policy changes
+
+---
+
+## Evaluation Metrics
+
+When testing these questions, the system should demonstrate:
+
+1. **Factual Accuracy**: Correct dates, names, and technical details
+2. **Context Awareness**: Understanding of mission context and significance
+3. **Source Attribution**: References to mission documents when available
+4. **Completeness**: Coverage of key points listed in expected responses
+5. **Relevance**: Staying on topic and avoiding irrelevant information
+6. **Clarity**: Clear, well-organized responses
+7. **Technical Precision**: Accurate use of technical terminology
+
+## RAGAS Evaluation Expected Scores
+
+- **Response Relevancy**: > 0.8 (responses should directly address the question)
+- **Faithfulness**: > 0.7 (responses should be grounded in retrieved context)
+- **Context Precision**: > 0.6 (retrieved documents should be relevant to question)
+
+## Notes for Reviewers
+
+- Actual responses will vary based on available documents in ChromaDB
+- System should acknowledge when information is not available in context
+- Responses should maintain professional, educational tone
+- Technical details should be accurate when present in source documents
+- System should cite sources when referencing specific mission transcripts or documents
