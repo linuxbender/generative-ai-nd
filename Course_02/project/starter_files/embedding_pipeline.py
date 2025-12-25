@@ -48,7 +48,8 @@ class ChromaEmbeddingPipelineTextOnly:
                  collection_name: str = "nasa_space_missions_text",
                  embedding_model: str = "text-embedding-3-small",
                  chunk_size: int = 1000,
-                 chunk_overlap: int = 200):
+                 chunk_overlap: int = 200,
+                 openai_base_url: Optional[str] = None):
         """
         Initialize the embedding pipeline
         
@@ -59,9 +60,16 @@ class ChromaEmbeddingPipelineTextOnly:
             embedding_model: OpenAI embedding model to use
             chunk_size: Maximum size of text chunks
             chunk_overlap: Overlap between chunks
+            openai_base_url: Optional custom base URL for OpenAI API
         """
-        # Initialize OpenAI client
-        self.openai_client = OpenAI(api_key=openai_api_key)
+        # Initialize OpenAI client with optional custom base URL
+        if openai_base_url is None:
+            openai_base_url = os.getenv("OPENAI_BASE_URL")
+        
+        if openai_base_url:
+            self.openai_client = OpenAI(api_key=openai_api_key, base_url=openai_base_url)
+        else:
+            self.openai_client = OpenAI(api_key=openai_api_key)
         
         # Store configuration parameters
         self.openai_api_key = openai_api_key
@@ -724,6 +732,7 @@ def main():
     parser = argparse.ArgumentParser(description='ChromaDB Embedding Pipeline for NASA Data')
     parser.add_argument('--data-path', default='.', help='Path to data directories')
     parser.add_argument('--openai-key', required=True, help='OpenAI API key')
+    parser.add_argument('--openai-base-url', help='Optional custom OpenAI base URL (e.g., https://openai.vocareum.com/v1)')
     parser.add_argument('--chroma-dir', default='./chroma_db_openai', help='ChromaDB persist directory')
     parser.add_argument('--collection-name', default='nasa_space_missions_text', help='Collection name')
     parser.add_argument('--embedding-model', default='text-embedding-3-small', help='OpenAI embedding model')
@@ -746,7 +755,8 @@ def main():
         collection_name=args.collection_name,
         embedding_model=args.embedding_model,
         chunk_size=args.chunk_size,
-        chunk_overlap=args.chunk_overlap
+        chunk_overlap=args.chunk_overlap,
+        openai_base_url=args.openai_base_url
     )
     
     # Handle delete source operation

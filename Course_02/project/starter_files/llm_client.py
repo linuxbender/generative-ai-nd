@@ -1,8 +1,10 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 from openai import OpenAI
+import os
 
 def generate_response(openai_key: str, user_message: str, context: str, 
-                     conversation_history: List[Dict], model: str = "gpt-3.5-turbo") -> str:
+                     conversation_history: List[Dict], model: str = "gpt-3.5-turbo",
+                     base_url: Optional[str] = None) -> str:
     """
     Generate response using OpenAI with context
     
@@ -12,6 +14,7 @@ def generate_response(openai_key: str, user_message: str, context: str,
         context: Retrieved context from RAG system
         conversation_history: Previous conversation messages
         model: OpenAI model to use (default: gpt-3.5-turbo)
+        base_url: Optional custom base URL for OpenAI API (e.g., Vocareum)
     
     Returns:
         Generated response from the LLM
@@ -33,8 +36,15 @@ When answering questions:
 4. Maintain a professional yet accessible tone
 5. Cite sources when referencing specific documents or transcripts"""
 
-        # Create OpenAI Client
-        client = OpenAI(api_key=openai_key)
+        # Create OpenAI Client with optional custom base URL
+        # Check environment variable if base_url not provided
+        if base_url is None:
+            base_url = os.getenv("OPENAI_BASE_URL")
+        
+        if base_url:
+            client = OpenAI(api_key=openai_key, base_url=base_url)
+        else:
+            client = OpenAI(api_key=openai_key)
         
         # Build messages array
         messages = [{"role": "system", "content": system_prompt}]

@@ -62,10 +62,11 @@ def format_context(documents: List[str], metadatas: List[Dict]) -> str:
     return rag_client.format_context(documents, metadatas)
 
 def generate_response(openai_key, user_message: str, context: str, 
-                     conversation_history: List[Dict], model: str = "gpt-3.5-turbo") -> str:
+                     conversation_history: List[Dict], model: str = "gpt-3.5-turbo",
+                     base_url: Optional[str] = None) -> str:
     """Generate response using OpenAI with context"""
     try:
-        return llm_client.generate_response(openai_key, user_message, context, conversation_history, model)
+        return llm_client.generate_response(openai_key, user_message, context, conversation_history, model, base_url)
     except Exception as e:
         return f"Error generating response: {e}"
 
@@ -152,11 +153,20 @@ def main():
             help="Enter your OpenAI API key"
         )
         
+        # Base URL input (optional for Vocareum or custom endpoints)
+        openai_base_url = st.text_input(
+            "OpenAI Base URL (Optional)",
+            value=os.getenv("OPENAI_BASE_URL", ""),
+            help="Custom OpenAI API base URL (e.g., https://openai.vocareum.com/v1). Leave empty for default."
+        )
+        
         if not openai_key:
             st.warning("Please enter your OpenAI API key")
             st.stop()
         else:
             os.environ["CHROMA_OPENAI_API_KEY"] = openai_key
+            if openai_base_url:
+                os.environ["OPENAI_BASE_URL"] = openai_base_url
         
         # Model selection
         model_choice = st.selectbox(
@@ -237,7 +247,8 @@ def main():
                     prompt, 
                     context, 
                     st.session_state.messages[:-1],
-                    model_choice
+                    model_choice,
+                    openai_base_url if openai_base_url else None
                 )
                 st.markdown(response)
                 
