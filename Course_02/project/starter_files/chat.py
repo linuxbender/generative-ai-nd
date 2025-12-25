@@ -134,10 +134,8 @@ def main():
         st.session_state.last_evaluation = None
     if "last_contexts" not in st.session_state:
         st.session_state.last_contexts = []
-    if "error_log" not in st.session_state:
-        st.session_state.error_log = []
-    if "info_log" not in st.session_state:
-        st.session_state.info_log = []
+    if "system_messages" not in st.session_state:
+        st.session_state.system_messages = []
     
     # Sidebar for configuration
     with st.sidebar:
@@ -232,38 +230,25 @@ def main():
     if st.session_state.last_evaluation and enable_evaluation:
         display_evaluation_metrics(st.session_state.last_evaluation)
     
-    # Add Error & Info Log tabs in sidebar
+    # Add System Messages in sidebar
     st.sidebar.markdown("---")
     st.sidebar.subheader("📋 System Messages")
     
-    error_tab, info_tab = st.sidebar.tabs(["❌ Errors", "ℹ️ Info"])
-    
-    with error_tab:
-        if st.session_state.error_log:
-            st.caption(f"Total errors: {len(st.session_state.error_log)}")
-            for idx, log_entry in enumerate(reversed(st.session_state.error_log[-10:])):  # Show last 10
-                with st.expander(f"🔴 {log_entry['type']} - {log_entry['timestamp'].strftime('%H:%M:%S')}", expanded=(idx==0)):
-                    st.text(log_entry['message'])
-            if st.button("Clear Error Log", key="clear_errors"):
-                st.session_state.error_log = []
-                st.rerun()
-        else:
-            st.success("No errors recorded")
-    
-    with info_tab:
-        if st.session_state.info_log:
-            st.caption(f"Total info messages: {len(st.session_state.info_log)}")
-            for idx, log_entry in enumerate(reversed(st.session_state.info_log[-10:])):  # Show last 10
-                with st.expander(f"🔵 {log_entry['type']} - {log_entry['timestamp'].strftime('%H:%M:%S')}", expanded=(idx==0)):
-                    st.text(log_entry['message'])
-                    # Add helpful info for specific message types
-                    if "embedding with dimension" in log_entry['message']:
-                        st.info("**Solution:** Delete `chroma_db_openai/` and recreate embeddings with: `python3 embedding_pipeline.py --openai-key $OPENAI_API_KEY --data-path .`")
-            if st.button("Clear Info Log", key="clear_info"):
-                st.session_state.info_log = []
-                st.rerun()
-        else:
-            st.info("No info messages")
+    if st.session_state.system_messages:
+        st.sidebar.caption(f"Total messages: {len(st.session_state.system_messages)}")
+        for idx, log_entry in enumerate(reversed(st.session_state.system_messages[-10:])):  # Show last 10
+            # Choose icon based on severity
+            icon = "🔴" if log_entry['severity'] == "error" else "🔵"
+            with st.sidebar.expander(f"{icon} {log_entry['type']} - {log_entry['timestamp'].strftime('%H:%M:%S')}", expanded=(idx==0)):
+                st.text(log_entry['message'])
+                # Add helpful info for specific message types
+                if "embedding with dimension" in log_entry['message']:
+                    st.info("**Solution:** Delete `chroma_db_openai/` and recreate embeddings with: `python3 embedding_pipeline.py --openai-key $OPENAI_API_KEY --data-path .`")
+        if st.sidebar.button("Clear Message Log", key="clear_messages"):
+            st.session_state.system_messages = []
+            st.rerun()
+    else:
+        st.sidebar.info("No messages")
     
     # Display chat messages
     for message in st.session_state.messages:
@@ -321,10 +306,11 @@ def main():
                     # Check for error in response
                     if response.startswith("Error generating response:"):
                         error_msg = response
-                        st.session_state.error_log.append({
+                        st.session_state.system_messages.append({
                             "timestamp": pd.Timestamp.now(),
                             "message": error_msg,
-                            "type": "LLM Generation Error"
+                            "type": "LLM Generation Error",
+                            "severity": "error"
                         })
                         with error_container:
                             st.error("⚠️ **Generation Error (Persistent)**")
@@ -347,10 +333,11 @@ def main():
                             except Exception as eval_error:
                                 # Evaluation errors are informational, not critical
                                 eval_msg = f"Evaluation failed: {eval_error}"
-                                st.session_state.info_log.append({
+                                st.session_state.system_messages.append({
                                     "timestamp": pd.Timestamp.now(),
                                     "message": eval_msg,
-                                    "type": "RAGAS Evaluation Warning"
+                                    "type": "RAGAS Evaluation Warning",
+                                    "severity": "info"
                                 })
                                 with error_container:
                                     st.warning(f"⚠️ {eval_msg}")
@@ -358,13 +345,25 @@ def main():
                 
                 except Exception as e:
                     error_msg = f"An error occurred: {str(e)}"
-                    st.session_state.error_log.append({
+                    # Categorize the error type
+                    if "expecting embedding with dimension" in str(e):
+                        severity = "info"
+                        error_type = "Embedding Dimension Mismatch"
+                    else:
+                        severity = "error"
+                        error_type = "System Error"
+                    
+                    st.session_state.system_messages.append({
                         "timestamp": pd.Timestamp.now(),
                         "message": error_msg,
-                        "type": "System Error"
+                        "type": error_type,
+                        "severity": severity
                     })
                     with error_container:
-                        st.error("⚠️ **System Error (Persistent)**")
+                        if severity == "error":
+                            st.error("⚠️ **System Error (Persistent)**")
+                        else:
+                            st.warning("⚠️ **System Warning (Persistent)**")
                         st.error(error_msg)
                         st.info("💡 **Troubleshooting:**")
                         st.markdown("""
