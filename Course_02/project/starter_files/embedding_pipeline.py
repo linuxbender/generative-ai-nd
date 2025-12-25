@@ -118,7 +118,7 @@ class ChromaEmbeddingPipelineTextOnly:
         
         while start < len(text):
             # Calculate end position
-            end = start + self.chunk_size
+            end = min(start + self.chunk_size, len(text))
             
             # Try to break at sentence boundaries (look for ., !, ?, or newline)
             if end < len(text):
@@ -128,14 +128,19 @@ class ChromaEmbeddingPipelineTextOnly:
                 
                 # Find the last sentence boundary
                 best_break = -1
-                for i in range(end, boundary_search_start, -1):
+                for i in range(end - 1, boundary_search_start - 1, -1):
                     if i < len(text) and text[i] in sentence_endings:
                         best_break = i + 1
                         break
                 
                 # If we found a good break point, use it
-                if best_break != -1:
+                # But ENSURE it doesn't exceed chunk_size
+                if best_break != -1 and (best_break - start) <= self.chunk_size:
                     end = best_break
+            
+            # Final safety check: ensure chunk doesn't exceed chunk_size
+            if end - start > self.chunk_size:
+                end = start + self.chunk_size
             
             # Extract chunk
             chunk_text = text[start:end].strip()

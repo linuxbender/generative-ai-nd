@@ -56,10 +56,11 @@ def retrieve_documents(collection, query: str, n_results: int = 3,
         st.error(f"Error retrieving documents: {e}")
         return None
 
-def format_context(documents: List[str], metadatas: List[Dict]) -> str:
-    """Format retrieved documents into context"""
+def format_context(documents: List[str], metadatas: List[Dict], distances: Optional[List[float]] = None,
+                  ids: Optional[List[str]] = None) -> str:
+    """Format retrieved documents into context with deduplication"""
     
-    return rag_client.format_context(documents, metadatas)
+    return rag_client.format_context(documents, metadatas, distances, ids)
 
 def generate_response(openai_key, user_message: str, context: str, 
                      conversation_history: List[Dict], model: str = "gpt-3.5-turbo",
@@ -225,42 +226,84 @@ def main():
         
         # Generate assistant response
         with st.chat_message("assistant"):
+            # Create a persistent error container
+            error_container = st.container()
+            
             with st.spinner("Searching documents and generating response..."):
-                # Retrieve relevant documents
-                docs_result = retrieve_documents(
-                    collection, 
-                    prompt, 
-                    n_docs
-                )
-                
-                # Format context
-                context = ""
-                contexts_list = []
-                if docs_result and docs_result.get("documents"):
-                    context = format_context(docs_result["documents"][0], docs_result["metadatas"][0])
-                    contexts_list = docs_result["documents"][0]
-                    st.session_state.last_contexts = contexts_list
-                
-                # Generate response
-                response = generate_response(
-                    openai_key, 
-                    prompt, 
-                    context, 
-                    st.session_state.messages[:-1],
-                    model_choice,
-                    openai_base_url if openai_base_url else None
-                )
-                st.markdown(response)
-                
-                # Evaluate response quality if enabled
-                if enable_evaluation and RAGAS_AVAILABLE:
-                    with st.spinner("Evaluating response quality..."):
-                        evaluation_scores = evaluate_response_quality(
-                            prompt, 
-                            response, 
-                            contexts_list
+                try:
+                    # Retrieve relevant documents
+                    docs_result = retrieve_documents(
+                        collection, 
+                        prompt, 
+                        n_docs
+                    )
+                    
+                    # Format context
+                    context = ""
+                    contexts_list = []
+                    if docs_result and docs_result.get("documents"):
+                        # Extract distances and IDs for deduplication and sorting
+                        distances = docs_result.get("distances", [None])[0] if docs_result.get("distances") else None
+                        ids = docs_result.get("ids", [None])[0] if docs_result.get("ids") else None
+                        
+                        context = format_context(
+                            docs_result["documents"][0], 
+                            docs_result["metadatas"][0],
+                            distances,
+                            ids
                         )
-                        st.session_state.last_evaluation = evaluation_scores
+                        contexts_list = docs_result["documents"][0]
+                        st.session_state.last_contexts = contexts_list
+                    
+                    # Generate response
+                    response = generate_response(
+                        openai_key, 
+                        prompt, 
+                        context, 
+                        st.session_state.messages[:-1],
+                        model_choice,
+                        openai_base_url if openai_base_url else None
+                    )
+                    
+                    # Check for error in response
+                    if response.startswith("Error generating response:"):
+                        with error_container:
+                            st.error("⚠️ **Generation Error (Persistent)**")
+                            st.error(response)
+                            st.info("💡 **Troubleshooting:** Check your API key, base URL, and network connection.")
+                        st.stop()
+                    
+                    st.markdown(response)
+                    
+                    # Evaluate response quality if enabled
+                    if enable_evaluation and RAGAS_AVAILABLE:
+                        with st.spinner("Evaluating response quality..."):
+                            try:
+                                evaluation_scores = evaluate_response_quality(
+                                    prompt, 
+                                    response, 
+                                    contexts_list
+                                )
+                                st.session_state.last_evaluation = evaluation_scores
+                            except Exception as eval_error:
+                                with error_container:
+                                    st.warning(f"⚠️ Evaluation failed: {eval_error}")
+                                    st.session_state.last_evaluation = {"error": str(eval_error)}
+                
+                except Exception as e:
+                    with error_container:
+                        st.error("⚠️ **System Error (Persistent)**")
+                        st.error(f"An error occurred: {str(e)}")
+                        st.info("💡 **Troubleshooting:**")
+                        st.markdown("""
+                        - Check ChromaDB backend is initialized
+                        - Verify documents are indexed correctly
+                        - Check API credentials and network
+                        - See TROUBLESHOOTING.md for details
+                        """)
+                    import logging
+                    logging.error(f"Chat error: {str(e)}", exc_info=True)
+                    st.stop()
         
         # Add assistant response to chat history
         st.session_state.messages.append({"role": "assistant", "content": response})

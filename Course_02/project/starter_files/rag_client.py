@@ -128,13 +128,16 @@ def retrieve_documents(collection, query: str, n_results: int = 3,
     # Return query results to caller
     return results
 
-def format_context(documents: List[str], metadatas: List[Dict], max_doc_length: int = 1000) -> str:
+def format_context(documents: List[str], metadatas: List[Dict], distances: Optional[List[float]] = None, 
+                  ids: Optional[List[str]] = None, max_doc_length: int = 1000) -> str:
     """
-    Format retrieved documents into context
+    Format retrieved documents into context with deduplication and sorting
     
     Args:
         documents: List of document text strings
         metadatas: List of metadata dictionaries for each document
+        distances: Optional list of distance scores (lower is better/more similar)
+        ids: Optional list of document IDs for deduplication
         max_doc_length: Maximum length for each document (default: 1000)
     
     Returns:
@@ -143,11 +146,50 @@ def format_context(documents: List[str], metadatas: List[Dict], max_doc_length: 
     if not documents:
         return ""
     
+    # Combine all document information for processing
+    doc_data = []
+    for i, (doc, metadata) in enumerate(zip(documents, metadatas)):
+        doc_data.append({
+            'doc': doc,
+            'metadata': metadata,
+            'distance': distances[i] if distances and i < len(distances) else None,
+            'id': ids[i] if ids and i < len(ids) else None,
+            'index': i
+        })
+    
+    # Deduplicate by ID or normalized text hash
+    seen_ids = set()
+    seen_texts = set()
+    deduplicated_docs = []
+    
+    for item in doc_data:
+        # Deduplication by ID (if available)
+        if item['id'] and item['id'] in seen_ids:
+            continue
+        
+        # Deduplication by normalized text hash
+        normalized_text = ' '.join(item['doc'].split()).lower().strip()
+        if normalized_text in seen_texts:
+            continue
+        
+        if item['id']:
+            seen_ids.add(item['id'])
+        seen_texts.add(normalized_text)
+        deduplicated_docs.append(item)
+    
+    # Sort by distance (if available) - lower distance means more relevant
+    if distances and any(d is not None for d in distances):
+        deduplicated_docs.sort(key=lambda x: x['distance'] if x['distance'] is not None else float('inf'))
+    
     # Initialize list with header text for context section
     context_parts = ["Retrieved Context from NASA Mission Documents:\n"]
     
-    # Loop through paired documents and their metadata using enumeration
-    for i, (doc, metadata) in enumerate(zip(documents, metadatas), 1):
+    # Loop through deduplicated and sorted documents
+    for i, item in enumerate(deduplicated_docs, 1):
+        doc = item['doc']
+        metadata = item['metadata']
+        distance = item['distance']
+        
         # Extract mission information from metadata with fallback value
         mission = metadata.get("mission", "unknown")
         # Clean up mission name formatting (replace underscores, capitalize)
@@ -163,6 +205,8 @@ def format_context(documents: List[str], metadatas: List[Dict], max_doc_length: 
         
         # Create formatted source header with index number and extracted information
         source_header = f"\n[Source {i}] Mission: {mission_clean} | Document: {source} | Category: {category_clean}"
+        if distance is not None:
+            source_header += f" | Relevance: {1.0 - distance:.3f}"
         # Add source header to context parts list
         context_parts.append(source_header)
         
