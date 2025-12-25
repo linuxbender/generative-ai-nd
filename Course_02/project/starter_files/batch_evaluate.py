@@ -369,6 +369,12 @@ def main():
         help='Collection name (default: nasa_space_missions_text)'
     )
     parser.add_argument(
+        '--embedding-model',
+        type=str,
+        default='text-embedding-3-small',
+        help='Embedding model used to create the collection (default: text-embedding-3-small)'
+    )
+    parser.add_argument(
         '--verbose',
         action='store_true',
         help='Print detailed per-question results'
@@ -396,8 +402,18 @@ def main():
     
     # Initialize ChromaDB
     logger.info(f"Initializing ChromaDB: {args.chroma_dir}/{args.collection}")
+    logger.info(f"Using embedding model: {args.embedding_model}")
+    if args.openai_base_url:
+        logger.info(f"Using custom base URL: {args.openai_base_url}")
+    
     try:
-        collection = rag_client.initialize_rag_system(args.chroma_dir, args.collection)
+        collection = rag_client.initialize_rag_system(
+            args.chroma_dir, 
+            args.collection,
+            args.openai_key,
+            args.embedding_model,
+            args.openai_base_url
+        )
     except Exception as e:
         logger.error(f"Failed to initialize ChromaDB: {e}")
         sys.exit(1)

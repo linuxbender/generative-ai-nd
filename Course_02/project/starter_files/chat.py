@@ -39,11 +39,16 @@ def discover_chroma_backends() -> Dict[str, Dict[str, str]]:
     return rag_client.discover_chroma_backends()
 
 #@st.cache_resource
-def initialize_rag_system(chroma_dir: str, collection_name: str):
+def initialize_rag_system(chroma_dir: str, collection_name: str, 
+                         openai_key: Optional[str] = None,
+                         embedding_model: str = "text-embedding-3-small",
+                         base_url: Optional[str] = None):
     """Initialize the RAG system with specified backend (cached for performance)"""
 
     try:
-       return rag_client.initialize_rag_system(chroma_dir, collection_name)
+       return rag_client.initialize_rag_system(
+           chroma_dir, collection_name, openai_key, embedding_model, base_url
+       )
     except Exception as e:
         return None, False, str(e)
 
@@ -214,7 +219,10 @@ def main():
         try:
             collection = initialize_rag_system(
                 selected_backend["directory"], 
-                selected_backend["collection_name"]
+                selected_backend["collection_name"],
+                openai_key,
+                "text-embedding-3-small",  # Default embedding model
+                openai_base_url if openai_base_url else None
             )
             success = True
             error = None
