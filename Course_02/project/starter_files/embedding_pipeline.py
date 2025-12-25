@@ -78,6 +78,7 @@ class ChromaEmbeddingPipelineTextOnly:
         self.embedding_model = embedding_model
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
+        self.openai_base_url = openai_base_url
         
         # Initialize ChromaDB client
         self.chroma_client = chromadb.PersistentClient(
@@ -85,13 +86,26 @@ class ChromaEmbeddingPipelineTextOnly:
             settings=Settings(anonymized_telemetry=False)
         )
         
-        # Create or get collection
+        # Create embedding function with correct configuration
+        embedding_function_params = {
+            "api_key": openai_api_key,
+            "model_name": embedding_model
+        }
+        if openai_base_url:
+            embedding_function_params["api_base"] = openai_base_url
+        
+        self.embedding_function = OpenAIEmbeddingFunction(**embedding_function_params)
+        
+        # Create or get collection with embedding function
         try:
             self.collection = self.chroma_client.get_or_create_collection(
                 name=collection_name,
+                embedding_function=self.embedding_function,
                 metadata={"description": "NASA Space Missions text data with OpenAI embeddings"}
             )
-            logger.info(f"Using collection: {collection_name}")
+            logger.info(f"Using collection: {collection_name} with embedding model: {embedding_model}")
+            if openai_base_url:
+                logger.info(f"Using custom OpenAI base URL: {openai_base_url}")
         except Exception as e:
             logger.error(f"Error creating collection: {e}")
             raise
@@ -514,7 +528,6 @@ class ChromaEmbeddingPipelineTextOnly:
             
             batch_ids = []
             batch_docs = []
-            batch_embeddings = []
             batch_metadatas = []
             
             # For each document:
@@ -530,31 +543,30 @@ class ChromaEmbeddingPipelineTextOnly:
                     continue
                 
                 try:
-                    # Get embedding
-                    embedding = self.get_embedding(text)
-                    
                     if exists and update_mode == 'update':
                         # Update existing document
-                        self.update_document(doc_id, text, metadata)
+                        self.collection.update(
+                            ids=[doc_id],
+                            documents=[text],
+                            metadatas=[metadata]
+                        )
                         stats['updated'] += 1
                     else:
                         # Add to batch for insertion
                         batch_ids.append(doc_id)
                         batch_docs.append(text)
-                        batch_embeddings.append(embedding)
                         batch_metadatas.append(metadata)
                         
                 except Exception as e:
                     logger.error(f"Error processing document {doc_id}: {e}")
                     continue
             
-            # Add or update in collection
+            # Add in collection (ChromaDB will compute embeddings automatically)
             if batch_ids:
                 try:
                     self.collection.add(
                         ids=batch_ids,
                         documents=batch_docs,
-                        embeddings=batch_embeddings,
                         metadatas=batch_metadatas
                     )
                     stats['added'] += len(batch_ids)
