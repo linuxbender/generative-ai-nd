@@ -345,8 +345,8 @@ def main():
     parser.add_argument(
         '--collection',
         type=str,
-        default='nasa_mission_docs',
-        help='Collection name (default: nasa_mission_docs)'
+        default='nasa_space_missions_text',
+        help='Collection name (default: nasa_space_missions_text)'
     )
     parser.add_argument(
         '--verbose',
