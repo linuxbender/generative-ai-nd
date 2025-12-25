@@ -53,7 +53,23 @@ def retrieve_documents(collection, query: str, n_results: int = 3,
     try:
         return rag_client.retrieve_documents(collection, query, n_results, mission_filter)
     except Exception as e:
-        st.error(f"Error retrieving documents: {e}")
+        error_msg = f"Error retrieving documents: {e}"
+        # Check if it's an embedding dimension mismatch (info) or actual error
+        if "expecting embedding with dimension" in str(e):
+            # This is informational - about model mismatch
+            st.session_state.info_log.append({
+                "timestamp": pd.Timestamp.now(),
+                "message": error_msg,
+                "type": "Embedding Dimension Mismatch"
+            })
+        else:
+            # This is an actual error
+            st.session_state.error_log.append({
+                "timestamp": pd.Timestamp.now(),
+                "message": error_msg,
+                "type": "Retrieval Error"
+            })
+        st.error(error_msg)
         return None
 
 def format_context(documents: List[str], metadatas: List[Dict], distances: Optional[List[float]] = None,
@@ -118,6 +134,10 @@ def main():
         st.session_state.last_evaluation = None
     if "last_contexts" not in st.session_state:
         st.session_state.last_contexts = []
+    if "error_log" not in st.session_state:
+        st.session_state.error_log = []
+    if "info_log" not in st.session_state:
+        st.session_state.info_log = []
     
     # Sidebar for configuration
     with st.sidebar:
@@ -212,6 +232,39 @@ def main():
     if st.session_state.last_evaluation and enable_evaluation:
         display_evaluation_metrics(st.session_state.last_evaluation)
     
+    # Add Error & Info Log tabs in sidebar
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("📋 System Messages")
+    
+    error_tab, info_tab = st.sidebar.tabs(["❌ Errors", "ℹ️ Info"])
+    
+    with error_tab:
+        if st.session_state.error_log:
+            st.caption(f"Total errors: {len(st.session_state.error_log)}")
+            for idx, log_entry in enumerate(reversed(st.session_state.error_log[-10:])):  # Show last 10
+                with st.expander(f"🔴 {log_entry['type']} - {log_entry['timestamp'].strftime('%H:%M:%S')}", expanded=(idx==0)):
+                    st.text(log_entry['message'])
+            if st.button("Clear Error Log", key="clear_errors"):
+                st.session_state.error_log = []
+                st.rerun()
+        else:
+            st.success("No errors recorded")
+    
+    with info_tab:
+        if st.session_state.info_log:
+            st.caption(f"Total info messages: {len(st.session_state.info_log)}")
+            for idx, log_entry in enumerate(reversed(st.session_state.info_log[-10:])):  # Show last 10
+                with st.expander(f"🔵 {log_entry['type']} - {log_entry['timestamp'].strftime('%H:%M:%S')}", expanded=(idx==0)):
+                    st.text(log_entry['message'])
+                    # Add helpful info for specific message types
+                    if "embedding with dimension" in log_entry['message']:
+                        st.info("**Solution:** Delete `chroma_db_openai/` and recreate embeddings with: `python3 embedding_pipeline.py --openai-key $OPENAI_API_KEY --data-path .`")
+            if st.button("Clear Info Log", key="clear_info"):
+                st.session_state.info_log = []
+                st.rerun()
+        else:
+            st.info("No info messages")
+    
     # Display chat messages
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
@@ -267,6 +320,12 @@ def main():
                     
                     # Check for error in response
                     if response.startswith("Error generating response:"):
+                        error_msg = response
+                        st.session_state.error_log.append({
+                            "timestamp": pd.Timestamp.now(),
+                            "message": error_msg,
+                            "type": "LLM Generation Error"
+                        })
                         with error_container:
                             st.error("⚠️ **Generation Error (Persistent)**")
                             st.error(response)
@@ -286,14 +345,27 @@ def main():
                                 )
                                 st.session_state.last_evaluation = evaluation_scores
                             except Exception as eval_error:
+                                # Evaluation errors are informational, not critical
+                                eval_msg = f"Evaluation failed: {eval_error}"
+                                st.session_state.info_log.append({
+                                    "timestamp": pd.Timestamp.now(),
+                                    "message": eval_msg,
+                                    "type": "RAGAS Evaluation Warning"
+                                })
                                 with error_container:
-                                    st.warning(f"⚠️ Evaluation failed: {eval_error}")
+                                    st.warning(f"⚠️ {eval_msg}")
                                     st.session_state.last_evaluation = {"error": str(eval_error)}
                 
                 except Exception as e:
+                    error_msg = f"An error occurred: {str(e)}"
+                    st.session_state.error_log.append({
+                        "timestamp": pd.Timestamp.now(),
+                        "message": error_msg,
+                        "type": "System Error"
+                    })
                     with error_container:
                         st.error("⚠️ **System Error (Persistent)**")
-                        st.error(f"An error occurred: {str(e)}")
+                        st.error(error_msg)
                         st.info("💡 **Troubleshooting:**")
                         st.markdown("""
                         - Check ChromaDB backend is initialized
