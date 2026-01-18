@@ -1,0 +1,287 @@
+# NASA RAG System - Evaluation Dataset
+
+This file contains sample questions used for testing the NASA RAG system, along with expected response
+characteristics and key information that should be included in accurate answers.
+
+The LLM model was: gpt-3.5-turbo
+---
+
+## Question 1: Apollo 11 Mission Overview
+
+**Question:**
+What was Apollo 11 and when did it take place?
+
+**Response:**
+Apollo 11 was the first manned mission to land on the Moon.
+It took place in July 1969, with astronauts Neil Armstrong,
+Buzz Aldrin, and Michael Collins as the crew.
+On July 20, 1969, Neil Armstrong became the first person to
+walk on the Moon, followed by Buzz Aldrin. Michael Collins
+remained in lunar orbit aboard the Command Module. This historic
+mission marked a significant achievement in human space exploration.
+
+Responserelevancy: 0.645
+Faithfulness: 0.714
+
+---
+
+## Question 2: Apollo 13 Crisis
+
+**Question:**
+What went wrong during the Apollo 13 mission?
+
+**Response:**
+During the Apollo 13 mission, an oxygen tank in the Service Module exploded,
+causing a major malfunction. The explosion led to the loss of oxygen and electrical
+power in the Command Module. The crew, consisting of Jim Lovell, Jack Swigert, and
+Fred Haise, had to abort their planned lunar landing and focus on safely returning
+to Earth. They used the Lunar Module as a "lifeboat" to provide life support and
+propulsion for their return journey. Through the crew's resourcefulness and the ground
+team's support, they successfully navigated back to Earth, making Apollo 13 a famous
+example of teamwork and problem-solving in the face of adversity.
+
+Responserelevancy: 0.596
+Faithfulness: 0.300
+
+
+---
+
+## Question 3: Challenger Disaster
+
+**Question:**
+What caused the Space Shuttle Challenger disaster?
+
+**Response:**
+The Space Shuttle Challenger disaster occurred on January 28, 1986, when the shuttle
+broke apart 73 seconds after liftoff, resulting in the tragic loss of all seven
+crew members. The cause of the disaster was determined to be the failure of an O-ring
+seal in one of the solid rocket boosters. This failure was attributed to
+unusually cold temperatures at the time of launch, which compromised the O-ring's
+ability to properly seal the joint, leading to the catastrophic structural failure
+of the shuttle. The Challenger disaster led to significant changes in the Space Shuttle
+program and a renewed focus on safety and engineering practices.
+
+Responserelevancy: 0.734
+Faithfulness: 0.000
+
+
+---
+
+## Question 4: Apollo 11 Moon Landing Details
+
+**Question:**
+Who were the first humans to walk on the Moon and what did they do there?
+
+**Response:**
+The first humans to walk on the Moon were Neil Armstrong and Buzz Aldrin of the Apollo 11
+mission, with Michael Collins orbiting above in the Command Module. Neil Armstrong famously
+took the first steps on the lunar surface on July 20, 1969, proclaiming, "That's one small
+step for [a] man, one giant leap for mankind." Buzz Aldrin joined him shortly after.
+During their time on the Moon, Armstrong and Aldrin collected samples of lunar soil and
+rock, conducted experiments, and set up scientific instruments. They also planted the
+American flag and left a plaque that read, "Here men from the planet Earth first set foot
+upon the Moon July 1969, A.D. We came in peace for all mankind."
+
+Responserelevancy: 0.944
+Faithfulness: 0.800
+
+---
+
+## Question 5: Apollo 13 Technical Details
+
+**Question:**
+How did the Apollo 13 crew survive after the oxygen tank explosion?
+
+**Response:**
+After the oxygen tank explosion on Apollo 13, the crew—Jim Lovell, Jack Swigert, and
+Fred Haise—had to quickly assess the situation and work with Mission Control to come up
+with a plan to ensure their safe return to Earth. They had to transfer to the Lunar Module
+(LM) "Aquarius," which became their lifeboat, as the Command Module's systems were shut
+down to conserve power and oxygen. The LM provided them with life support, propulsion,
+and a habitable environment for the journey back. The crew and ground control had to
+overcome numerous challenges, including limited power, high carbon dioxide levels,
+and cold temperatures, but through their resourcefulness, teamwork, and the support of
+Mission Control, they successfully navigated their way back to Earth, splashing down safely
+in the Pacific Ocean on April 17, 1970.
+
+Responserelevancy: 0.790
+Faithfulness: 0.857
+
+---
+
+## Question 6: Mission Comparison
+
+**Question:**
+What are the key differences between Apollo 11 and Apollo 13 missions?
+
+**Response:**
+
+The Apollo 11 and Apollo 13 missions were both part of NASA's Apollo program but had
+significant differences in their outcomes and challenges:
+
+1. Objective:
+    Apollo 11 (July 1969) achieved the historic milestone of landing humans on the Moon
+    with Neil Armstrong and Buzz Aldrin's iconic moonwalk.
+
+    Apollo 13 (April 1970) intended to land on the Moon but had to abort its lunar landing due to an oxygen tank
+    explosion, focusing instead on safely returning the crew to Earth.
+
+2.  Crew:
+    Apollo 11's crew consisted of Neil Armstrong, Buzz Aldrin, and Michael Collins.
+
+    Apollo 13's crew included Jim Lovell, Jack Swigert, and Fred Haise.
+
+3. Outcome:
+    Apollo 11 successfully landed on the Moon, conducted experiments,
+    and returned safely to Earth.
+
+    Apollo 13 faced a life-threatening crisis with the oxygen tank explosion but managed to
+    safely return to Earth using the Lunar Module as a lifeboat.
+
+4. Duration:
+    Apollo 11's mission lasted about 8 days, from launch to splashdown.
+
+    Apollo 13's mission was cut short to around 6 days due to the emergency situation.
+
+5. Impact:
+    Apollo 11's success was a significant achievement in human history, inspiring generations
+    and advancing space exploration.
+
+    Apollo 13, while not achieving its original objective, demonstrated incredible teamwork, problem-solving,
+    and the importance of mission control support in overcoming adversity.
+
+These differences highlight the varied experiences and challenges faced by the Apollo 11 and Apollo 13 missions,
+showcasing the complexities and risks inherent in human space exploration.
+
+Responserelevancy: 0.958
+Faithfulness: 1.000
+
+
+---
+
+## Question 7: Space Shuttle Program Context
+
+**Question:**
+What was the Space Shuttle program and what role did Challenger play?
+
+**Response:**
+
+The Space Shuttle program was a groundbreaking initiative by NASA that aimed to create a
+reusable spacecraft for various missions, including satellite deployment, scientific research,
+and crewed missions to space stations like the International Space Station (ISS).
+The Space Shuttle consisted of an orbiter, solid rocket boosters, and an external fuel tank,
+providing a versatile platform for space exploration.
+
+Challenger was one of the Space Shuttle orbiters (OV-099) that played a crucial role in the
+Shuttle program. However, Challenger became tragically famous for the disaster that occurred
+on January 28, 1986, when it broke apart 73 seconds after liftoff, resulting in the loss of
+all seven crew members. The Challenger disaster was a pivotal moment in the history of space
+exploration, leading to a temporary suspension of the Shuttle program and a comprehensive
+investigation into the causes of the accident.
+
+The Challenger disaster highlighted the risks involved in space exploration and
+emphasized the importance of rigorous safety protocols, engineering practices, and
+organizational culture in ensuring the success and safety of crewed space missions. The lessons
+learned from Challenger ultimately led to improvements in the Space Shuttle program and a
+renewed emphasis on safety, which shaped the future of human spaceflight endeavors.
+
+
+Responserelevancy: 0.516
+Faithfulness: 0.938
+
+
+---
+
+## Question 8: Technical Specifications
+
+**Question:**
+Short: What was the Lunar Module and what was its purpose?
+
+**Response:**
+The Lunar Module (LM) was a two-stage spacecraft used in NASA's Apollo program to transport astronauts from lunar orbit to the lunar surface and back. Its purpose was to provide a safe landing on the Moon, a habitable environment for lunar exploration, and a means of returning the astronauts to the
+Command Module in lunar orbit for the journey back to Earth.
+
+Responserelevancy: 0.848
+Faithfulness: 0.000
+
+---
+
+## Question 9: Crew Communication
+
+**Question:**
+What are some famous quotes or communications from these missions? Name at least two in short.
+
+**Response:**
+
+Certainly! Here are two famous quotes from NASA space missions:
+
+Apollo 11 - Neil Armstrong: "That's one small step for [a] man, one giant leap for mankind."
+Apollo 13 - Jack Swigert: "Houston, we've had a problem."
+
+These quotes have become iconic in space exploration history, capturing pivotal
+moments during the Apollo missions.
+
+Responserelevancy: 0.736
+Faithfulness: 0.750
+
+
+---
+
+## Question 10: Random question with moon in it
+
+**Question:**
+How song the song "Fly Me to the Moon" become associated with space missions? In short.
+
+**Response:**
+The song "Fly Me to the Moon" became associated with space missions,
+particularly the Apollo program, due to its lyrical connection to space exploration and
+the dream of traveling to the Moon. Frank Sinatra's popular rendition in 1969
+coincided with the Apollo 11 mission, solidifying its symbolic link to the spirit of
+space exploration.
+
+Responserelevancy: 0.770
+Faithfulness: 0.000
+
+---
+
+## Stats Only
+% uv run python embedding_pipeline.py \
+  --openai-key $OPENAI_API_KEY \
+  --chroma-dir ./chroma_db_openai \
+  --stats-only
+
+2025-12-25 02:29:28,145 - INFO - Initializing ChromaDB Embedding Pipeline...
+2025-12-25 02:29:28,266 - INFO - Using collection: nasa_space_missions_text
+2025-12-25 02:29:28,266 - INFO - Collection Statistics:
+2025-12-25 02:29:28,502 - INFO - total_documents: 2826
+2025-12-25 02:29:28,502 - INFO - missions: {'apollo_13': 2826}
+2025-12-25 02:29:28,502 - INFO - data_types: {'document': 2826}
+2025-12-25 02:29:28,502 - INFO - document_categories: {'technical': 2826}
+2025-12-25 02:29:28,502 - INFO - file_types: {'text': 2826}
+
+--
+## Final db import output message was:
+
+2025-12-25 02:14:41,806 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 02:14:42,523 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 02:14:43,242 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 02:14:43,957 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 02:14:44,028 - INFO -   Processed 2826 chunks - Added: 2826, Updated: 0, Skipped: 0
+2025-12-25 02:14:44,029 - INFO - ============================================================
+2025-12-25 02:14:44,029 - INFO - PROCESSING COMPLETE
+2025-12-25 02:14:44,029 - INFO - ============================================================
+2025-12-25 02:14:44,029 - INFO - Files processed: 1
+2025-12-25 02:14:44,029 - INFO - Total chunks created: 2826
+2025-12-25 02:14:44,029 - INFO - Documents added to collection: 2826
+2025-12-25 02:14:44,029 - INFO - Documents updated in collection: 0
+2025-12-25 02:14:44,029 - INFO - Documents skipped (already exist): 0
+2025-12-25 02:14:44,029 - INFO - Errors: 0
+2025-12-25 02:14:44,029 - INFO - Processing time: 2198.17 seconds
+2025-12-25 02:14:44,029 - INFO -
+Mission breakdown:
+2025-12-25 02:14:44,029 - INFO -   apollo_13: 1 files, 2826 chunks
+2025-12-25 02:14:44,029 - INFO -     Added: 2826, Updated: 0, Skipped: 0
+2025-12-25 02:14:44,030 - INFO -
+Collection: nasa_space_missions_text
+2025-12-25 02:14:44,030 - INFO - Total documents in collection: 2826
+2025-12-25 02:14:44,030 - INFO - Pipeline completed successfully!

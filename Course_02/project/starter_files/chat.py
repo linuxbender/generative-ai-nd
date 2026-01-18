@@ -53,19 +53,38 @@ def retrieve_documents(collection, query: str, n_results: int = 3,
     try:
         return rag_client.retrieve_documents(collection, query, n_results, mission_filter)
     except Exception as e:
-        st.error(f"Error retrieving documents: {e}")
+        error_msg = f"Error retrieving documents: {e}"
+        # Check if it's an embedding dimension mismatch (info) or actual error
+        if "expecting embedding with dimension" in str(e):
+            # This is informational - about model mismatch
+            severity = "info"
+            error_type = "Embedding Dimension Mismatch"
+        else:
+            # This is an actual error
+            severity = "error"
+            error_type = "Retrieval Error"
+        
+        st.session_state.system_messages.append({
+            "timestamp": pd.Timestamp.now(),
+            "message": error_msg,
+            "type": error_type,
+            "severity": severity
+        })
+        st.error(error_msg)
         return None
 
-def format_context(documents: List[str], metadatas: List[Dict]) -> str:
-    """Format retrieved documents into context"""
+def format_context(documents: List[str], metadatas: List[Dict], distances: Optional[List[float]] = None,
+                  ids: Optional[List[str]] = None) -> str:
+    """Format retrieved documents into context with deduplication"""
     
-    return rag_client.format_context(documents, metadatas)
+    return rag_client.format_context(documents, metadatas, distances, ids)
 
 def generate_response(openai_key, user_message: str, context: str, 
-                     conversation_history: List[Dict], model: str = "gpt-3.5-turbo") -> str:
+                     conversation_history: List[Dict], model: str = "gpt-3.5-turbo",
+                     base_url: Optional[str] = None) -> str:
     """Generate response using OpenAI with context"""
     try:
-        return llm_client.generate_response(openai_key, user_message, context, conversation_history, model)
+        return llm_client.generate_response(openai_key, user_message, context, conversation_history, model, base_url)
     except Exception as e:
         return f"Error generating response: {e}"
 
@@ -116,6 +135,8 @@ def main():
         st.session_state.last_evaluation = None
     if "last_contexts" not in st.session_state:
         st.session_state.last_contexts = []
+    if "system_messages" not in st.session_state:
+        st.session_state.system_messages = []
     
     # Sidebar for configuration
     with st.sidebar:
@@ -152,11 +173,20 @@ def main():
             help="Enter your OpenAI API key"
         )
         
+        # Base URL input (optional for Vocareum or custom endpoints)
+        openai_base_url = st.text_input(
+            "OpenAI Base URL (Optional)",
+            value=os.getenv("OPENAI_BASE_URL", ""),
+            help="Custom OpenAI API base URL (e.g., https://openai.vocareum.com/v1). Leave empty for default."
+        )
+        
         if not openai_key:
             st.warning("Please enter your OpenAI API key")
             st.stop()
         else:
             os.environ["CHROMA_OPENAI_API_KEY"] = openai_key
+            if openai_base_url:
+                os.environ["OPENAI_BASE_URL"] = openai_base_url
         
         # Model selection
         model_choice = st.selectbox(
@@ -181,11 +211,17 @@ def main():
     
     # Initialize RAG system
     with st.spinner("Initializing RAG system..."):
-
-        collection, success, error = initialize_rag_system(
-            selected_backend["directory"], 
-            selected_backend["collection_name"]
-        )
+        try:
+            collection = initialize_rag_system(
+                selected_backend["directory"], 
+                selected_backend["collection_name"]
+            )
+            success = True
+            error = None
+        except Exception as e:
+            collection = None
+            success = False
+            error = str(e)
     
     if not success:
         st.error(f"Failed to initialize RAG system: {error}")
@@ -194,6 +230,26 @@ def main():
     # Display evaluation metrics if available
     if st.session_state.last_evaluation and enable_evaluation:
         display_evaluation_metrics(st.session_state.last_evaluation)
+    
+    # Add System Messages in sidebar
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("📋 System Messages")
+    
+    if st.session_state.system_messages:
+        st.sidebar.caption(f"Total messages: {len(st.session_state.system_messages)}")
+        for idx, log_entry in enumerate(reversed(st.session_state.system_messages[-10:])):  # Show last 10
+            # Choose icon based on severity
+            icon = "🔴" if log_entry['severity'] == "error" else "🔵"
+            with st.sidebar.expander(f"{icon} {log_entry['type']} - {log_entry['timestamp'].strftime('%H:%M:%S')}", expanded=(idx==0)):
+                st.text(log_entry['message'])
+                # Add helpful info for specific message types
+                if "embedding with dimension" in log_entry['message']:
+                    st.info("**Solution:** Delete `chroma_db_openai/` and recreate embeddings with: `python3 embedding_pipeline.py --openai-key $OPENAI_API_KEY --data-path .`")
+        if st.sidebar.button("Clear Message Log", key="clear_messages"):
+            st.session_state.system_messages = []
+            st.rerun()
+    else:
+        st.sidebar.info("No messages")
     
     # Display chat messages
     for message in st.session_state.messages:
@@ -209,41 +265,117 @@ def main():
         
         # Generate assistant response
         with st.chat_message("assistant"):
+            # Create a persistent error container
+            error_container = st.container()
+            
             with st.spinner("Searching documents and generating response..."):
-                # Retrieve relevant documents
-                docs_result = retrieve_documents(
-                    collection, 
-                    prompt, 
-                    n_docs
-                )
-                
-                # Format context
-                context = ""
-                contexts_list = []
-                if docs_result and docs_result.get("documents"):
-                    context = format_context(docs_result["documents"][0], docs_result["metadatas"][0])
-                    contexts_list = docs_result["documents"][0]
-                    st.session_state.last_contexts = contexts_list
-                
-                # Generate response
-                response = generate_response(
-                    openai_key, 
-                    prompt, 
-                    context, 
-                    st.session_state.messages[:-1],
-                    model_choice
-                )
-                st.markdown(response)
-                
-                # Evaluate response quality if enabled
-                if enable_evaluation and RAGAS_AVAILABLE:
-                    with st.spinner("Evaluating response quality..."):
-                        evaluation_scores = evaluate_response_quality(
-                            prompt, 
-                            response, 
-                            contexts_list
+                try:
+                    # Retrieve relevant documents
+                    docs_result = retrieve_documents(
+                        collection, 
+                        prompt, 
+                        n_docs
+                    )
+                    
+                    # Format context
+                    context = ""
+                    contexts_list = []
+                    if docs_result and docs_result.get("documents"):
+                        # Extract distances and IDs for deduplication and sorting
+                        distances = docs_result.get("distances", [None])[0] if docs_result.get("distances") else None
+                        ids = docs_result.get("ids", [None])[0] if docs_result.get("ids") else None
+                        
+                        context = format_context(
+                            docs_result["documents"][0], 
+                            docs_result["metadatas"][0],
+                            distances,
+                            ids
                         )
-                        st.session_state.last_evaluation = evaluation_scores
+                        contexts_list = docs_result["documents"][0]
+                        st.session_state.last_contexts = contexts_list
+                    
+                    # Generate response
+                    response = generate_response(
+                        openai_key, 
+                        prompt, 
+                        context, 
+                        st.session_state.messages[:-1],
+                        model_choice,
+                        openai_base_url if openai_base_url else None
+                    )
+                    
+                    # Check for error in response
+                    if response.startswith("Error generating response:"):
+                        error_msg = response
+                        st.session_state.system_messages.append({
+                            "timestamp": pd.Timestamp.now(),
+                            "message": error_msg,
+                            "type": "LLM Generation Error",
+                            "severity": "error"
+                        })
+                        with error_container:
+                            st.error("⚠️ **Generation Error (Persistent)**")
+                            st.error(response)
+                            st.info("💡 **Troubleshooting:** Check your API key, base URL, and network connection.")
+                        st.stop()
+                    
+                    st.markdown(response)
+                    
+                    # Evaluate response quality if enabled
+                    if enable_evaluation and RAGAS_AVAILABLE:
+                        with st.spinner("Evaluating response quality..."):
+                            try:
+                                evaluation_scores = evaluate_response_quality(
+                                    prompt, 
+                                    response, 
+                                    contexts_list
+                                )
+                                st.session_state.last_evaluation = evaluation_scores
+                            except Exception as eval_error:
+                                # Evaluation errors are informational, not critical
+                                eval_msg = f"Evaluation failed: {eval_error}"
+                                st.session_state.system_messages.append({
+                                    "timestamp": pd.Timestamp.now(),
+                                    "message": eval_msg,
+                                    "type": "RAGAS Evaluation Warning",
+                                    "severity": "info"
+                                })
+                                with error_container:
+                                    st.warning(f"⚠️ {eval_msg}")
+                                    st.session_state.last_evaluation = {"error": str(eval_error)}
+                
+                except Exception as e:
+                    error_msg = f"An error occurred: {str(e)}"
+                    # Categorize the error type
+                    if "expecting embedding with dimension" in str(e):
+                        severity = "info"
+                        error_type = "Embedding Dimension Mismatch"
+                    else:
+                        severity = "error"
+                        error_type = "System Error"
+                    
+                    st.session_state.system_messages.append({
+                        "timestamp": pd.Timestamp.now(),
+                        "message": error_msg,
+                        "type": error_type,
+                        "severity": severity
+                    })
+                    with error_container:
+                        if severity == "error":
+                            st.error("⚠️ **System Error (Persistent)**")
+                        else:
+                            st.warning("⚠️ **System Warning (Persistent)**")
+                        st.error(error_msg)
+                        st.info("💡 **Troubleshooting:**")
+                        st.markdown("""
+                        - Check ChromaDB backend is initialized
+                        - Verify documents are indexed correctly
+                        - Check API credentials and network
+                        - See TROUBLESHOOTING.md for details
+                        """)
+                    import logging
+                    logging.error(f"Chat error: {str(e)}", exc_info=True)
+                    st.stop()
         
         # Add assistant response to chat history
         st.session_state.messages.append({"role": "assistant", "content": response})
