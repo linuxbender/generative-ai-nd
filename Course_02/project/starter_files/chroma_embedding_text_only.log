@@ -1,0 +1,87 @@
+2025-12-25 17:58:42,045 - INFO - Initializing ChromaDB Embedding Pipeline...
+2025-12-25 17:58:42,189 - INFO - Using collection: nasa_space_missions_text with embedding model: text-embedding-3-small
+2025-12-25 17:58:42,189 - INFO - Using custom OpenAI base URL: https://openai.vocareum.com/v1
+2025-12-25 17:58:42,189 - INFO - Starting text data processing with update mode: skip
+2025-12-25 17:58:42,189 - INFO - Scanning directory: apollo13
+2025-12-25 17:58:42,189 - INFO - Found 1 text files in apollo13
+2025-12-25 17:58:42,190 - INFO - Total text files to process: 1
+2025-12-25 17:58:42,190 - INFO - Files by mission:
+2025-12-25 17:58:42,190 - INFO -   apollo_13: 1 files
+2025-12-25 17:58:42,190 - INFO - Processing 1 files...
+2025-12-25 17:58:42,190 - INFO - Processing: apollo13/AS13_TEC.txt
+2025-12-25 17:58:43,506 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:45,500 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:46,863 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:48,190 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:49,289 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:50,838 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:52,268 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:53,310 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:54,706 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:56,068 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:57,612 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:58:58,961 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:00,458 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:01,857 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:03,016 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:04,289 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:05,631 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:07,241 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:09,096 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:10,446 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:11,822 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:14,100 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:15,953 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:17,171 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:18,319 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:19,528 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:20,959 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:22,392 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:23,688 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:24,849 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:26,388 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:27,809 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:29,380 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:30,789 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:32,123 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:33,585 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:34,988 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:36,493 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:37,937 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:39,065 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:40,517 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:42,130 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:43,567 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:44,785 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:46,558 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:47,886 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:49,407 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:51,009 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:52,514 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:53,670 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:55,137 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:56,563 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:57,895 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:59:59,225 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 18:00:00,488 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 18:00:01,934 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 18:00:03,062 - INFO - HTTP Request: POST https://openai.vocareum.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 18:00:03,231 - INFO -   Processed 2831 chunks - Added: 2831, Updated: 0, Skipped: 0
+2025-12-25 18:00:03,232 - INFO - ============================================================
+2025-12-25 18:00:03,232 - INFO - PROCESSING COMPLETE
+2025-12-25 18:00:03,232 - INFO - ============================================================
+2025-12-25 18:00:03,232 - INFO - Files processed: 1
+2025-12-25 18:00:03,232 - INFO - Total chunks created: 2831
+2025-12-25 18:00:03,232 - INFO - Documents added to collection: 2831
+2025-12-25 18:00:03,232 - INFO - Documents updated in collection: 0
+2025-12-25 18:00:03,232 - INFO - Documents skipped (already exist): 0
+2025-12-25 18:00:03,232 - INFO - Errors: 0
+2025-12-25 18:00:03,232 - INFO - Processing time: 81.04 seconds
+2025-12-25 18:00:03,232 - INFO - 
+Mission breakdown:
+2025-12-25 18:00:03,232 - INFO -   apollo_13: 1 files, 2831 chunks
+2025-12-25 18:00:03,232 - INFO -     Added: 2831, Updated: 0, Skipped: 0
+2025-12-25 18:00:03,233 - INFO - 
+Collection: nasa_space_missions_text
+2025-12-25 18:00:03,233 - INFO - Total documents in collection: 2831
+2025-12-25 18:00:03,233 - INFO - Pipeline completed successfully!
